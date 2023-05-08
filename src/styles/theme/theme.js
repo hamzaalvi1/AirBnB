@@ -1,9 +1,11 @@
 import { extendTheme } from "@chakra-ui/react";
+import { MenuTheme } from "./components";
 
 const colors = {
   primaryColor: "#ff385c",
   borderColor: "#dddddd",
-  darkGrey: "#717171"
+  darkGrey: "#717171",
+  lightGrey: "#ccc"
 };
 
 const fontWeights = {
@@ -31,5 +33,14 @@ const fontSizes = {
   "8xl": "6rem",
   "9xl": "8rem",
 };
+// components
 
-export const theme = extendTheme({ colors, fontWeights,fontSizes });
+const components = {
+  Menu: MenuTheme,
+};
+export const theme = extendTheme({
+  colors,
+  fontWeights,
+  fontSizes,
+  components,
+});

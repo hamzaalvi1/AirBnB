@@ -24,12 +24,12 @@ export const userMenu = {
     border: "1px solid",
     borderColor: "borderColor",
     display: "flex",
-    boxShadow: "md",
+    boxShadow: "none",
     padding: "08px 0 08px 15px",
     alignItems: "center",
     cursor: "pointer",
     transition: "box-shadow 0.3s",
     '&:hover':{
-      boxShadow:'lg'
+      boxShadow:'md'
     }
 }
