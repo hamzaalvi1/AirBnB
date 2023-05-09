@@ -18,7 +18,6 @@ const DropDown = (props) => {
     children,
     dividerCount,
   } = props;
-
   return (
     <Menu isLazy sx={styleProps}>
       <MenuButton as={"button"} onClick={toggleMenu}>
@@ -28,7 +27,9 @@ const DropDown = (props) => {
         <MenuList>
           {menuItems.map((items, idx) => (
             <>
-              <MenuItem key={idx}>{items.name}</MenuItem>
+              <MenuItem key={idx} onClick={items.handleClick}>
+                {items.name}
+              </MenuItem>
               {dividerCount &&
                 idx % dividerCount === 1 &&
                 idx !== menuItems.length - 1 && (
