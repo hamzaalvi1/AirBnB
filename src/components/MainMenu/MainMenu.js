@@ -6,12 +6,14 @@ import { FiMenu } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 import { yourHome, mainMenuWrapper, userMenu } from "./styles";
 import { Modal } from "../Modal";
+import { Input } from "../Input";
 
 function MainMenu(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleOpenModal = () => onOpen();
+
   const menuItems = [
     { name: "Sign up", handleClick: handleOpenModal },
     { name: "Log in", handleClick: handleOpenModal },
@@ -53,7 +55,16 @@ function MainMenu(props) {
           dividerCount={2}
         />
       </Box>
-      {isMenuOpen && <Modal isOpen={isOpen} onClose={onClose} size={"xl"} />}
+      {isMenuOpen && (
+        <Modal
+          title={"Log in or Sign Up"}
+          isOpen={isOpen}
+          onClose={onClose}
+          size={"xl"}
+        >
+         <Input placeholder={"Hey There"}/>
+        </Modal>
+      )}
     </>
   );
 }

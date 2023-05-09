@@ -8,6 +8,7 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  Text,
 } from "@chakra-ui/react";
 
 function CustomModal(props) {
@@ -22,6 +23,7 @@ function CustomModal(props) {
     isCentered = true,
     motionPresent = "slideInBottom",
     overlayStyles,
+    titleStyles,
     size = "md",
     ...rest
   } = props;
@@ -31,12 +33,22 @@ function CustomModal(props) {
       motionPresent={motionPresent}
       isOpen={isOpen}
       onClose={onClose}
-      size= {size}
+      size={size}
       {...rest}
     >
       <ModalOverlay bg="blackAlpha.300" sx={overlayStyles} />
       <ModalContent sx={styleProps}>
-        <ModalHeader>{title}</ModalHeader>
+        <ModalHeader>
+          <Text
+            as={"h6"}
+            fontWeight={"bold"}
+            color={"gray.600"}
+            fontSize={"md"}
+            sx={titleStyles}
+          >
+            {title}
+          </Text>
+        </ModalHeader>
         <ModalCloseButton />
         <ModalBody>{children}</ModalBody>
         {isFooterEnabled && <ModalFooter>{footerContent}</ModalFooter>}
