@@ -23,7 +23,7 @@ const baseStyle = definePartsStyle({
     borderRadius: 'md',
     border: 'none',
     bg: 'white',
-    boxShadow: "lg",
+    boxShadow: "0 0px 05px 0px rgba(0, 0, 0, 0.2);",
    
   },
   item: {

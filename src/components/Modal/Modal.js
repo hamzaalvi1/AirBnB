@@ -42,7 +42,7 @@ function CustomModal(props) {
           <Text
             as={"h6"}
             fontWeight={"bold"}
-            color={"gray.600"}
+            color={"gray.900"}
             fontSize={"md"}
             sx={titleStyles}
           >

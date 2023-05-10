@@ -15,7 +15,7 @@ const primary = defineStyle({
 
 const oAuth = {
   fontSize: "md",
-  fontWeight: "semibold",
+  fontWeight: "bold",
   minHeight: "50px",
   minWidth: "100%",
   fontWeight: "500",
@@ -24,6 +24,7 @@ const oAuth = {
   marginBlock: "10px",
   border: "2px solid #000",
   position: "relative",
+  borderRadius: "lg",
 };
 
 export default defineStyleConfig({

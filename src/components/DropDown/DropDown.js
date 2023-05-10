@@ -6,6 +6,7 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
+  Box,
 } from "@chakra-ui/react";
 
 const DropDown = (props) => {
@@ -26,16 +27,14 @@ const DropDown = (props) => {
       {isMenuOpen && (
         <MenuList>
           {menuItems.map((items, idx) => (
-            <>
-              <MenuItem key={idx} onClick={items.handleClick}>
-                {items.name}
-              </MenuItem>
+            <Box key={idx}>
+              <MenuItem onClick={items.handleClick}>{items.name}</MenuItem>
               {dividerCount &&
                 idx % dividerCount === 1 &&
                 idx !== menuItems.length - 1 && (
                   <MenuDivider border={"1px solid"} borderColor={"lightGrey"} />
                 )}
-            </>
+            </Box>
           ))}
         </MenuList>
       )}

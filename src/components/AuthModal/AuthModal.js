@@ -21,11 +21,11 @@ function AuthModal(props) {
       title={"Log in or Sign Up"}
       isOpen={isOpen}
       onClose={onClose}
-      size={"xl"}
+      size={"lg"}
       styleProps={{ borderRadius: "lg" }}
     >
       <Box as={"div"} my={"1.5rem"}>
-        <Heading variant={"primary"}>Welcome to Airbnb</Heading>
+        <Heading variant={"primary"}  fontWeight={"bold"}>Welcome to Airbnb</Heading>
         <Formik
           initialValues={initialValues}
           validationSchema={LoginSchema}
@@ -70,28 +70,55 @@ function AuthModal(props) {
                   name="password"
                   errorText={errors.password}
                 />
-                <Button title={"Continue"} type="submit" variant={"primary"} />
+                <Button fontWeight={"bold"} title={"Continue"} type="submit" variant={"primary"} />
               </form>
             );
           }}
         </Formik>
+
         <Text sx={orTextStyles}>or</Text>
         <Flex as={"div"} flexFlow={"column"}>
           <Button
+            fontWeight="bold"
             textStyle="secondary"
             variant={"oAuth"}
             title="Continue with Google"
             // loading={oAuthLoading.google}
-            leftIcon={<FcGoogle fontSize={"20px"} />}
+            leftIcon={
+              <FcGoogle
+                size={24}
+                style={{
+                  position: "absolute",
+                  left: "20px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                }}
+              />
+            }
           />
           <Button
+            fontWeight="bold"
             textStyle="secondary"
             variant={"oAuth"}
             isDisabled={true}
             title="Continue with Apple"
-            leftIcon={<FaApple fontSize={"20px"} />}
+            leftIcon={
+              <FaApple
+                size={24}
+                style={{
+                  position: "absolute",
+                  left: "20px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                }}
+              />
+            }
           />
         </Flex>
+        <Text fontSize={13} textStyle="secondary">
+          By continuing, you agree are setting up a Airbnb account and agree to
+          our User Agreement and Privacy Policy
+        </Text>
       </Box>
     </Modal>
   );
