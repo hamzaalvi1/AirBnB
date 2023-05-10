@@ -1,6 +1,5 @@
 import { menuAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
-import { m } from 'framer-motion'
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(menuAnatomy.keys)
@@ -24,7 +23,7 @@ const baseStyle = definePartsStyle({
     borderRadius: 'md',
     border: 'none',
     bg: 'white',
-    boxShadow: "md",
+    boxShadow: "lg",
    
   },
   item: {
@@ -32,7 +31,7 @@ const baseStyle = definePartsStyle({
     color: '#000',
     fontSize: "sm",
     fontWeight:"semibold",
-    px:"1.5rem",
+    px:"1rem",
     marginBottom: "5px",
     py:"0.5rem",
     _hover: {

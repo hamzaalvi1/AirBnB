@@ -14,10 +14,12 @@
     "@emotion/styled": "^11.10.8",
     "eslint": "8.39.0",
     "eslint-config-next": "13.4.0",
+    "formik": "^2.2.9",
     "framer-motion": "^10.12.7",
     "next": "13.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.8.0"
+    "react-icons": "^4.8.0",
+    "yup": "^1.1.1"
   }
 }

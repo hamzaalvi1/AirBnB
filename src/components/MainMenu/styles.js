@@ -30,6 +30,6 @@ export const userMenu = {
     cursor: "pointer",
     transition: "box-shadow 0.3s",
     '&:hover':{
-      boxShadow:'md'
+      boxShadow:'lg'
     }
 }

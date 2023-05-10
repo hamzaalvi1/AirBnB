@@ -36,7 +36,7 @@ function CustomModal(props) {
       size={size}
       {...rest}
     >
-      <ModalOverlay bg="blackAlpha.300" sx={overlayStyles} />
+      <ModalOverlay bg="blackAlpha.500" sx={overlayStyles} />
       <ModalContent sx={styleProps}>
         <ModalHeader>
           <Text

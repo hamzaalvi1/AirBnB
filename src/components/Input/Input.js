@@ -55,7 +55,7 @@ function CustomInput(props) {
         variant={variant}
         placeholder={placeholder}
         name={name}
-        sx={{...defaultInputStyles,...inputStyles}}
+        sx={{ ...defaultInputStyles, ...inputStyles }}
         {...rest}
         border={"1px solid"}
         borderColor={"lightGrey"}
@@ -81,10 +81,11 @@ function CustomInput(props) {
         </FormLabel>
       )}
       <Input
+        name={name}
         type={type}
         value={value}
         placeholder={placeholder}
-        sx={{...defaultInputStyles,...inputStyles}}
+        sx={{ ...defaultInputStyles, ...inputStyles }}
         onChange={onChange}
         onBlur={onBlur}
         border={"1px solid"}
