@@ -2,11 +2,10 @@
 import { useState } from "react";
 import { Box, Text, useDisclosure } from "@chakra-ui/react";
 import { DropDown } from "../DropDown";
+import { AuthModal } from "../AuthModal";
 import { FiMenu } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 import { yourHome, mainMenuWrapper, userMenu } from "./styles";
-import { Modal } from "../Modal";
-import { Input } from "../Input";
 
 function MainMenu(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,16 +54,7 @@ function MainMenu(props) {
           dividerCount={2}
         />
       </Box>
-      {isMenuOpen && (
-        <Modal
-          title={"Log in or Sign Up"}
-          isOpen={isOpen}
-          onClose={onClose}
-          size={"xl"}
-        >
-         <Input placeholder={"Hey There"}/>
-        </Modal>
-      )}
+      {isMenuOpen && <AuthModal isOpen={isOpen} onClose={onClose} />}
     </>
   );
 }

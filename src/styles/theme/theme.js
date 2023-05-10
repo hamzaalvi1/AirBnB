@@ -1,8 +1,9 @@
 import { extendTheme } from "@chakra-ui/react";
-import { MenuTheme, ModalTheme } from "./components";
+import { MenuTheme, ModalTheme,HeadingTheme } from "./components";
 
 const colors = {
   primaryColor: "#ff385c",
+  primaryFont:"Nunito",
   borderColor: "#dddddd",
   darkGrey: "#717171",
   lightGrey: "#ccc",
@@ -38,6 +39,7 @@ const fontSizes = {
 const components = {
   Menu: MenuTheme,
   Modal: ModalTheme,
+  Heading:HeadingTheme
 };
 export const theme = extendTheme({
   colors,

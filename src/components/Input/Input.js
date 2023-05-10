@@ -9,6 +9,11 @@ import {
   InputRightElement,
   InputGroup,
 } from "@chakra-ui/react";
+import {
+  formControlStyles,
+  defaultLabelStyles,
+  defaultInputStyles,
+} from "./styles";
 
 function CustomInput(props) {
   const {
@@ -37,7 +42,7 @@ function CustomInput(props) {
     ...rest
   } = props;
   return isCustomInput ? (
-    <InputGroup sx={styleProps}>
+    <InputGroup sx={{ ...formControlStyles, ...styleProps }}>
       {InputLeftElements && (
         <InputLeftElement>
           <InputLeftElements />
@@ -50,8 +55,10 @@ function CustomInput(props) {
         variant={variant}
         placeholder={placeholder}
         name={name}
-        sx={inputStyles}
+        sx={{...defaultInputStyles,...inputStyles}}
         {...rest}
+        border={"1px solid"}
+        borderColor={"lightGrey"}
       />
       {InputRightElements && (
         <InputRightElement>
@@ -61,19 +68,27 @@ function CustomInput(props) {
     </InputGroup>
   ) : (
     <FormControl
-      sx={styleProps}
+      sx={{ ...formControlStyles, ...styleProps }}
       isInvalid={error}
       isDisabled={isDisabled}
       isReadOnly={isReadOnly}
     >
-      {label && <FormLabel sx={labelStyles}>{labelText}</FormLabel>}
+      {label && (
+        <FormLabel
+          sx={{ ...defaultLabelStyles, defaultInputStyles, ...labelStyles }}
+        >
+          {labelText}
+        </FormLabel>
+      )}
       <Input
         type={type}
         value={value}
         placeholder={placeholder}
-        sx={inputStyles}
+        sx={{...defaultInputStyles,...inputStyles}}
         onChange={onChange}
         onBlur={onBlur}
+        border={"1px solid"}
+        borderColor={"lightGrey"}
         {...rest}
       />
       {isHelper && <FormHelperText>{helperText}</FormHelperText>}

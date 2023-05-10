@@ -1,4 +1,5 @@
 import MenuTheme from "./Menu";
-import ModalTheme from "./Modal"
+import ModalTheme from "./Modal";
+import HeadingTheme from "./Heading";
 
-export { MenuTheme ,ModalTheme};
+export { MenuTheme, ModalTheme, HeadingTheme };
