@@ -24,8 +24,13 @@ function AuthModal(props) {
       size={"lg"}
       styleProps={{ borderRadius: "lg" }}
     >
-      <Box as={"div"} my={"1.5rem"}>
-        <Heading variant={"primary"}  fontWeight={"bold"}>Welcome to Airbnb</Heading>
+      <Box as={"div"} my={"1rem"}>
+        <Heading variant={"primary"} my={"5px"} fontWeight={"bold"}>
+          Welcome to Airbnb
+        </Heading>
+        <Text fontSize={13} as={"p"} my={"10px"} textStyle="secondary">
+          Create an Account
+        </Text>
         <Formik
           initialValues={initialValues}
           validationSchema={LoginSchema}
@@ -70,7 +75,12 @@ function AuthModal(props) {
                   name="password"
                   errorText={errors.password}
                 />
-                <Button fontWeight={"bold"} title={"Continue"} type="submit" variant={"primary"} />
+                <Button
+                  fontWeight={"bold"}
+                  title={"Continue"}
+                  type="submit"
+                  variant={"primary"}
+                />
               </form>
             );
           }}
@@ -115,9 +125,8 @@ function AuthModal(props) {
             }
           />
         </Flex>
-        <Text fontSize={13} textStyle="secondary">
-          By continuing, you agree are setting up a Airbnb account and agree to
-          our User Agreement and Privacy Policy
+        <Text  my={"0.25rem"} fontSize={"sm"} textAlign={"center"} textStyle="secondary" cursor={"pointer"}>
+          Already have an account ? <Text fontWeight={"bold"} as={"span"} color={"blue.500"}>Log In</Text>
         </Text>
       </Box>
     </Modal>
