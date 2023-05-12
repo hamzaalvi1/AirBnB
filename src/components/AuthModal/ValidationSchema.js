@@ -14,6 +14,7 @@ const SignUpSchema = Yup.object().shape({
 });
 
 const LoginSchema = Yup.object().shape({
+  name: Yup.string().required("Full Name is required"),
   email: Yup.string()
     .email("Invalid Email Address")
     .required("Email Address is required"),

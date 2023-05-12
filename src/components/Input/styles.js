@@ -9,7 +9,7 @@ export const defaultLabelStyles = {
 };
 
 export const defaultInputStyles = {
-  height: "50px",
+  height: "45px",
   fontSize: "md",
   "&::placeholder": {
     fontSize: "md",

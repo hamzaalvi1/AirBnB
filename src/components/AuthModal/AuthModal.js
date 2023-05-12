@@ -12,6 +12,7 @@ import { orTextStyles } from "./AuthModalsStyles";
 function AuthModal(props) {
   const { isOpen, onClose } = props;
   const initialValues = {
+    // name: "",
     email: "",
     password: "",
   };
@@ -51,9 +52,22 @@ function AuthModal(props) {
 
             return (
               <form onSubmit={handleSubmit}>
+                {/* <Input
+                  placeholder={"Enter your name"}
+                  type="text"
+                  label={true}
+                  labelText={"Name"}
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.name && touched.name}
+                  name="name"
+                  errorText={errors.name}
+                  autoComplete={"new-password"}
+                /> */}
                 <Input
                   placeholder={"Enter your email address"}
-                  type="text"
+                  type="email"
                   label={true}
                   labelText={"Email"}
                   value={values.email}
@@ -62,6 +76,7 @@ function AuthModal(props) {
                   error={errors.email && touched.email}
                   name="email"
                   errorText={errors.email}
+                  autoComplete={"new-password"}
                 />
                 <Input
                   placeholder={"Enter your password"}
@@ -74,6 +89,7 @@ function AuthModal(props) {
                   error={errors.password && touched.password}
                   name="password"
                   errorText={errors.password}
+                  autoComplete={"new-password"}
                 />
                 <Button
                   fontWeight={"bold"}
@@ -125,8 +141,16 @@ function AuthModal(props) {
             }
           />
         </Flex>
-        <Text  my={"0.25rem"} fontSize={"sm"} textAlign={"center"} textStyle="secondary" cursor={"pointer"}>
-          Already have an account ? <Text fontWeight={"bold"} as={"span"} color={"blue.500"}>Log In</Text>
+        <Text
+          fontSize={"sm"}
+          textAlign={"center"}
+          textStyle="secondary"
+          cursor={"pointer"}
+        >
+          Already have an account ?{" "}
+          <Text fontWeight={"bold"} as={"span"} color={"blue.500"}>
+            Log In
+          </Text>
         </Text>
       </Box>
     </Modal>
