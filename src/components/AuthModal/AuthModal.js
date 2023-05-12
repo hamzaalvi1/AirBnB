@@ -52,7 +52,7 @@ function AuthModal(props) {
 
             return (
               <form onSubmit={handleSubmit}>
-                {/* <Input
+                <Input
                   placeholder={"Enter your name"}
                   type="text"
                   label={true}
@@ -64,7 +64,7 @@ function AuthModal(props) {
                   name="name"
                   errorText={errors.name}
                   autoComplete={"new-password"}
-                /> */}
+                />
                 <Input
                   placeholder={"Enter your email address"}
                   type="email"
@@ -76,7 +76,7 @@ function AuthModal(props) {
                   error={errors.email && touched.email}
                   name="email"
                   errorText={errors.email}
-                  autoComplete={"new-password"}
+                  autoComplete={"off"}
                 />
                 <Input
                   placeholder={"Enter your password"}
@@ -89,7 +89,7 @@ function AuthModal(props) {
                   error={errors.password && touched.password}
                   name="password"
                   errorText={errors.password}
-                  autoComplete={"new-password"}
+                  autoComplete={"off"}
                 />
                 <Button
                   fontWeight={"bold"}
