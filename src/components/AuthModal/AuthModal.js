@@ -10,7 +10,7 @@ import { FaApple } from "react-icons/fa";
 import { orTextStyles } from "./AuthModalsStyles";
 
 function AuthModal(props) {
-  const { isOpen, onClose } = props;
+  const { isOpen, onClose, title } = props;
   const initialValues = {
     // name: "",
     email: "",
@@ -19,7 +19,7 @@ function AuthModal(props) {
 
   return (
     <Modal
-      title={"Log in or Sign Up"}
+      title={title}
       isOpen={isOpen}
       onClose={onClose}
       size={"lg"}

@@ -28,7 +28,9 @@ const DropDown = (props) => {
         <MenuList>
           {menuItems.map((items, idx) => (
             <Box key={idx}>
-              <MenuItem onClick={items.handleClick}>{items.name}</MenuItem>
+              <MenuItem onClick={() => items.handleClick(items.name)}>
+                {items.name}
+              </MenuItem>
               {dividerCount &&
                 idx % dividerCount === 1 &&
                 idx !== menuItems.length - 1 && (

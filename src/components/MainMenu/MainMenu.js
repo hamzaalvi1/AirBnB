@@ -1,21 +1,27 @@
 "use client";
 import { useState } from "react";
-import { Box, Text, useDisclosure } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { DropDown } from "../DropDown";
 import { AuthModal } from "../AuthModal";
 import { FiMenu } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 import { yourHome, mainMenuWrapper, userMenu } from "./styles";
+import { isModalOpen } from "@/store/Slices/AuthModal";
+import { useSelector, useDispatch } from "react-redux";
 
 function MainMenu(props) {
+  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { open, view } = useSelector((state) => state.authModal);
 
-  const handleOpenModal = () => onOpen();
+  const handleModalClose = () => dispatch(isModalOpen({ open: false }));
+  const handleOpenModal = (title) =>
+    dispatch(isModalOpen({ open: true, view: title }));
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const menuItems = [
-    { name: "Sign up", handleClick: handleOpenModal },
-    { name: "Log in", handleClick: handleOpenModal },
+    { name: "Sign up", handleClick: (title) => handleOpenModal(title) },
+    { name: "Log in", handleClick: (title) => handleOpenModal(title) },
     { name: "Airbnb your home", handleClick: () => console.log("HELLO") },
     { name: "Help", handleClick: () => console.log("HELLO") },
   ];
@@ -27,7 +33,7 @@ function MainMenu(props) {
       </Box>
     );
   };
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
   return (
     <>
       <Box as={"div"} sx={mainMenuWrapper}>
@@ -54,7 +60,9 @@ function MainMenu(props) {
           dividerCount={2}
         />
       </Box>
-      {isMenuOpen && <AuthModal isOpen={isOpen} onClose={onClose} />}
+      {isMenuOpen && (
+        <AuthModal isOpen={open} onClose={handleModalClose} title={view} />
+      )}
     </>
   );
 }
