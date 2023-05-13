@@ -7,7 +7,7 @@ import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 import { persistReducer, persistStore } from "redux-persist";
 /* reducers */
-import { AuthModal } from "./Slices";
+import { AuthModal, Auth } from "./Slices";
 
 const persistConfig = {
   key: "root",
@@ -18,6 +18,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   authModal: AuthModal,
+  auth: Auth,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

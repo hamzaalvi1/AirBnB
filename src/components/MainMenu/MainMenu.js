@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, useDisclosure } from "@chakra-ui/react";
 import { DropDown } from "../DropDown";
 import { AuthModal } from "../AuthModal";
 import { FiMenu } from "react-icons/fi";
@@ -15,8 +15,10 @@ function MainMenu(props) {
   const { open, view } = useSelector((state) => state.authModal);
 
   const handleModalClose = () => dispatch(isModalOpen({ open: false }));
-  const handleOpenModal = (title) =>
+  const handleOpenModal = (title) => {
+    setIsMenuOpen(false);
     dispatch(isModalOpen({ open: true, view: title }));
+  };
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const menuItems = [
@@ -60,7 +62,7 @@ function MainMenu(props) {
           dividerCount={2}
         />
       </Box>
-      {isMenuOpen && (
+      {open && (
         <AuthModal isOpen={open} onClose={handleModalClose} title={view} />
       )}
     </>

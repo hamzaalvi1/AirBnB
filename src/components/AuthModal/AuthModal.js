@@ -1,20 +1,29 @@
 "use client";
-import { Heading, Box, Text, Flex } from "@chakra-ui/react";
+
 import { Modal } from "../Modal";
 import { Input } from "../Input";
 import { Formik } from "formik";
 import { Button } from "../Button";
-import { LoginSchema } from "./ValidationSchema";
 import { FcGoogle } from "react-icons/fc";
-import { FaApple } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { orTextStyles } from "./AuthModalsStyles";
+import { registerUser } from "@/store/Slices/Auth";
+import { LoginSchema } from "./ValidationSchema";
+import { useDispatch } from "react-redux";
+import { Heading, Box, Text, Flex } from "@chakra-ui/react";
 
 function AuthModal(props) {
   const { isOpen, onClose, title } = props;
+  const dispatch = useDispatch();
   const initialValues = {
-    // name: "",
+    name: "",
     email: "",
     password: "",
+  };
+  const handleSignUp = (values, submitProps) => {
+    const { resetForm, setSubmitting } = submitProps;
+  
+    dispatch(registerUser({ values, undefined, setSubmitting, resetForm }));
   };
 
   return (
@@ -35,8 +44,8 @@ function AuthModal(props) {
         <Formik
           initialValues={initialValues}
           validationSchema={LoginSchema}
-          onSubmit={(values) => {
-            console.log(values);
+          onSubmit={(values, submitProps) => {
+            handleSignUp(values, submitProps);
           }}
         >
           {(formikProps) => {
@@ -126,10 +135,9 @@ function AuthModal(props) {
             fontWeight="bold"
             textStyle="secondary"
             variant={"oAuth"}
-            isDisabled={true}
-            title="Continue with Apple"
+            title="Continue with Github "
             leftIcon={
-              <FaApple
+              <FaGithub
                 size={24}
                 style={{
                   position: "absolute",

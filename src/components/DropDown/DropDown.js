@@ -21,7 +21,12 @@ const DropDown = (props) => {
   } = props;
   return (
     <Menu isLazy sx={styleProps}>
-      <MenuButton as={"button"} onClick={toggleMenu}>
+      <MenuButton
+        as={"button"}
+        onClick={() => {
+          toggleMenu();
+        }}
+      >
         {menuButtonDetails}
       </MenuButton>
       {isMenuOpen && (
