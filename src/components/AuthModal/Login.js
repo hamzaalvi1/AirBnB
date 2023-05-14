@@ -1,8 +1,10 @@
 import { Input } from "../Input";
 import { Formik } from "formik";
 import { Button } from "../Button";
+import { getMe } from "@/store/Slices/Auth";
 import { LoginSchema } from "./ValidationSchema";
 import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 function Login() {
   const dispatch = useDispatch();
@@ -12,6 +14,7 @@ function Login() {
   };
   const handleLogin = (values, submitProps) => {
     const { resetForm, setSubmitting } = submitProps;
+    dispatch(getMe({ values, toast, setSubmitting, resetForm }));
   };
 
   return (
@@ -31,6 +34,7 @@ function Login() {
           handleBlur,
           handleSubmit,
           resetForm,
+          isSubmitting
         } = formikProps;
 
         return (
@@ -66,6 +70,7 @@ function Login() {
               title={"Continue"}
               type="submit"
               variant={"primary"}
+              loading = {isSubmitting}
             />
           </form>
         );

@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 
 import prisma from "@/libs/prismadb";
 
-const checkEmailExist = async (email) => {
+  const checkEmailExist = async (email) => {
   const user = await prisma.user.findUnique({ where: { email } });
   return !!user;
 };

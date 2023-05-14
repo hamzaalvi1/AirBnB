@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { ApiMethodsConstants } from "@/config/constants";
 import { AuthRoutes } from "@/config/api-routes";
 import { fetchAPI } from "@/utils";
+import { signIn } from "next-auth/react";
+
 const initialState = {
   fetching: false,
   user: {},
@@ -28,25 +30,61 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+export const getMe = createAsyncThunk(
+  "authentication/getMe",
+  async (
+    { values, toast, setSubmitting, resetForm },
+    { dispatch, rejectWithValue }
+  ) => {
+    const apiParams = {
+      method: ApiMethodsConstants.POST,
+      url: AuthRoutes.GET_USER,
+      data: JSON.stringify({ email: values.email }),
+    };
+    try {
+      let data;
+      const getCredentials = await signIn("credentials", {
+        ...values,
+        redirect: false,
+      });
+      if (getCredentials?.ok) {
+        const getUser = await fetchAPI(apiParams);
+        if (getUser?.data?.status == 200) {
+          data = getUser?.data;
+          toast.success('Logged in');
+          setSubmitting(false) 
+          resetForm()
+
+        } 
+      }
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const Authentication = createSlice({
   name: "Authentication",
   initialState,
   reducers: {},
-  extraReducers: {
-    [registerUser.pending]: (state) => {
-      state.fetching = true;
-    },
-    [registerUser.fulfilled]: (state, payload) => {
-      state.fetching = false;
-      state.user = payload;
-      state.isAuthenticated = true;
-    },
-    [registerUser.rejected]: (state, payload) => {
-      state.fetching = false;
-      state.user = {};
-      state.isAuthenticated = false;
-      state.error = payload;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getMe.pending, (state) => {
+        state.fetching = true;
+      })
+      .addCase(getMe.fulfilled, (state, action) => {
+        state.fetching = false;
+        state.isAuthenticated = true;
+        state.user = action.payload;
+        state.error = null;
+      })
+      .addCase(getMe.rejected, (state, action) => {
+        state.fetching = false;
+        state.isAuthenticated = false;
+        state.error = action.payload;
+        state.user = {};
+      });
   },
 });
 
