@@ -8,22 +8,28 @@ import { FaUserCircle } from "react-icons/fa";
 import { yourHome, mainMenuWrapper, userMenu } from "./styles";
 import { isModalOpen } from "@/store/Slices/AuthModal";
 import { useSelector, useDispatch } from "react-redux";
+import { AuthConstants } from "@/config/constants";
 
 function MainMenu(props) {
   const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { open, view } = useSelector((state) => state.authModal);
+  const { open } = useSelector((state) => state.authModal);
 
   const handleModalClose = () => dispatch(isModalOpen({ open: false }));
-  const handleOpenModal = (title) => {
+  const handleRegisterModal = () => {
     setIsMenuOpen(false);
-    dispatch(isModalOpen({ open: true, view: title }));
+    dispatch(isModalOpen({ open: true, view: AuthConstants.SIGNUP }));
   };
+  const handleLoginModal = () => {
+    setIsMenuOpen(false);
+    dispatch(isModalOpen({ open: true, view: AuthConstants.LOGIN }));
+  };
+  
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const menuItems = [
-    { name: "Sign up", handleClick: (title) => handleOpenModal(title) },
-    { name: "Log in", handleClick: (title) => handleOpenModal(title) },
+    { name: "Sign up", handleClick: handleRegisterModal },
+    { name: "Log in", handleClick: handleLoginModal },
     { name: "Airbnb your home", handleClick: () => console.log("HELLO") },
     { name: "Help", handleClick: () => console.log("HELLO") },
   ];
@@ -62,9 +68,7 @@ function MainMenu(props) {
           dividerCount={2}
         />
       </Box>
-      {open && (
-        <AuthModal isOpen={open} onClose={handleModalClose} title={view} />
-      )}
+      {open && <AuthModal isOpen={open} onClose={handleModalClose} />}
     </>
   );
 }

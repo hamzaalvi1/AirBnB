@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { AuthConstants } from "@/config/constants";
 
 const initialState = {
   open: false,
-  view: "log In",
+  view: AuthConstants.SIGNUP,
 };
 
 const authModal = createSlice({

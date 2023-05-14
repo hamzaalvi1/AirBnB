@@ -1,34 +1,28 @@
 "use client";
-
+import Login from "./Login";
+import Register from "./Register";
 import { Modal } from "../Modal";
-import { Input } from "../Input";
-import { Formik } from "formik";
 import { Button } from "../Button";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { orTextStyles } from "./AuthModalsStyles";
-import { registerUser } from "@/store/Slices/Auth";
-import { LoginSchema } from "./ValidationSchema";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { AuthConstants } from "@/config/constants";
 import { Heading, Box, Text, Flex } from "@chakra-ui/react";
+import { isModalOpen } from "@/store/Slices/AuthModal";
 
 function AuthModal(props) {
-  const { isOpen, onClose, title } = props;
+  const { isOpen, onClose } = props;
   const dispatch = useDispatch();
-  const initialValues = {
-    name: "",
-    email: "",
-    password: "",
-  };
-  const handleSignUp = (values, submitProps) => {
-    const { resetForm, setSubmitting } = submitProps;
-  
-    dispatch(registerUser({ values, undefined, setSubmitting, resetForm }));
-  };
+  const { view } = useSelector((state) => state.authModal);
 
+  const toggleModal = (toggle) => {
+    console.log(toggle);
+    dispatch(isModalOpen({ open: true, view: toggle }));
+  };
   return (
     <Modal
-      title={title}
+      title={view}
       isOpen={isOpen}
       onClose={onClose}
       size={"lg"}
@@ -36,81 +30,15 @@ function AuthModal(props) {
     >
       <Box as={"div"} my={"1rem"}>
         <Heading variant={"primary"} my={"5px"} fontWeight={"bold"}>
-          Welcome to Airbnb
+          {view == AuthConstants.SIGNUP ? "Welcome to Airbnb" : "Welcome Back"}
         </Heading>
         <Text fontSize={13} as={"p"} my={"10px"} textStyle="secondary">
-          Create an Account
+          {view == AuthConstants.SIGNUP
+            ? "Create an Account"
+            : "Login to your account!"}
         </Text>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={LoginSchema}
-          onSubmit={(values, submitProps) => {
-            handleSignUp(values, submitProps);
-          }}
-        >
-          {(formikProps) => {
-            const {
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              resetForm,
-            } = formikProps;
-
-            return (
-              <form onSubmit={handleSubmit}>
-                <Input
-                  placeholder={"Enter your name"}
-                  type="text"
-                  label={true}
-                  labelText={"Name"}
-                  value={values.name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={errors.name && touched.name}
-                  name="name"
-                  errorText={errors.name}
-                  autoComplete={"new-password"}
-                />
-                <Input
-                  placeholder={"Enter your email address"}
-                  type="email"
-                  label={true}
-                  labelText={"Email"}
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={errors.email && touched.email}
-                  name="email"
-                  errorText={errors.email}
-                  autoComplete={"off"}
-                />
-                <Input
-                  placeholder={"Enter your password"}
-                  type="password"
-                  label={true}
-                  labelText={"Password"}
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={errors.password && touched.password}
-                  name="password"
-                  errorText={errors.password}
-                  autoComplete={"off"}
-                />
-                <Button
-                  fontWeight={"bold"}
-                  title={"Continue"}
-                  type="submit"
-                  variant={"primary"}
-                />
-              </form>
-            );
-          }}
-        </Formik>
-
+        {view == AuthConstants.SIGNUP && <Register />}
+        {view == AuthConstants.LOGIN && <Login />}
         <Text sx={orTextStyles}>or</Text>
         <Flex as={"div"} flexFlow={"column"}>
           <Button
@@ -149,17 +77,38 @@ function AuthModal(props) {
             }
           />
         </Flex>
-        <Text
-          fontSize={"sm"}
-          textAlign={"center"}
-          textStyle="secondary"
-          cursor={"pointer"}
-        >
-          Already have an account ?{" "}
-          <Text fontWeight={"bold"} as={"span"} color={"blue.500"}>
-            Log In
+        {AuthConstants.SIGNUP ? (
+          <Text fontSize={"sm"} textAlign={"center"} textStyle="secondary">
+            Already have an account ?{" "}
+            <Text
+              fontWeight={"bold"}
+              as={"span"}
+              color={"blue.500"}
+              cursor={"pointer"}
+              onClick={() => toggleModal(AuthConstants.LOGIN)}
+            >
+              Log In
+            </Text>
           </Text>
-        </Text>
+        ) : (
+          <Text
+            fontSize={"sm"}
+            textAlign={"center"}
+            textStyle="secondary"
+            cursor={"pointer"}
+          >
+            Don't have account ?{" "}
+            <Text
+              fontWeight={"bold"}
+              as={"span"}
+              color={"blue.500"}
+              cursor={"pointer"}
+              onClick={() => toggleModal(AuthConstants.SIGNUP)}
+            >
+              Signup
+            </Text>
+          </Text>
+        )}
       </Box>
     </Modal>
   );
