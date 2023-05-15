@@ -1,21 +1,24 @@
 "use client";
 import { useState } from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, useDisclosure } from "@chakra-ui/react";
 import { DropDown } from "../DropDown";
 import { AuthModal } from "../AuthModal";
 import { FiMenu } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
-import { yourHome, mainMenuWrapper, userMenu } from "./styles";
 import { AuthConstants } from "@/app/config/constants";
 import { useAuthModal } from "@/app/hooks";
+import { yourHome, mainMenuWrapper, userMenu } from "./styles";
 
 function MainMenu(props) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { title, isOpen, onOpen, onClose } = useAuthModal();
+  const {
+    isOpen: isMenuOpen,
+    onToggle: toggleMenu,
+    onClose: closeMenu,
+  } = useDisclosure();
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const handleModelOpen = (title) => {
-    setIsMenuOpen(false);
+    closeMenu();
     onOpen({ title: title });
   };
   const menuItems = [
