@@ -1,9 +1,8 @@
-import { Providers } from "@/components/Providers";
-import { Header } from "@/components/Header";
-import { nunito } from "@/components/Fonts";
-import getCurrentUser from "./actions/getCurrentUser";
+import { Providers } from "@/app/components/Providers";
+import { Header } from "@/app/components/Header";
+import { nunito } from "@/app/components/Fonts";
 
-import "@/styles/global.css";
+import "@/app/styles/global.css";
 
 export const metadata = {
   title: "Create Next App",
@@ -11,8 +10,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const currentUser = await getCurrentUser();
-  console.log(currentUser)
   return (
     <html lang="en">
       <body className={nunito.className}>

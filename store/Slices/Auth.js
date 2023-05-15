@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { ApiMethodsConstants } from "@/config/constants";
-import { AuthRoutes } from "@/config/api-routes";
-import { fetchAPI } from "@/utils";
+import { ApiMethodsConstants } from "@/app/config/constants";
+import { AuthRoutes } from "@/app/config/api-routes";
+import { fetchAPI } from "@/app/utils";
 import { signIn } from "next-auth/react";
 import { isModalOpen } from "./AuthModal";
-import { AuthConstants } from "@/config/constants";
+import { AuthConstants } from "@/app/config/constants";
 
 const initialState = {
   fetching: false,
@@ -76,11 +76,9 @@ export const getMe = createAsyncThunk(
 
 export const googleSignIn = createAsyncThunk(
   "authentication/google",
-  async ({callbackUrl}) => {
-    console.log(callbackUrl);
+  async () => {
     try {
       const getCredentials = await signIn("google");
-
       console.log(getCredentials);
     } catch (err) {
       console.log(err);

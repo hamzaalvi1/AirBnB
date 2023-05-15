@@ -1,5 +1,5 @@
 import { defineStyle, defineStyleConfig } from "@chakra-ui/react";
-import { nunito } from "@/components/Fonts";
+import { nunito } from "@/app/components/Fonts";
 
 const primary = defineStyle({
   fontFamily: nunito.style.fontFamily,

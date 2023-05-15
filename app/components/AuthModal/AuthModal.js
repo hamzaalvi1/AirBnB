@@ -6,7 +6,7 @@ import OAuthButtons from "./OAuthButtons";
 import { Modal } from "../Modal";
 import { orTextStyles } from "./AuthModalsStyles";
 import { useSelector, useDispatch } from "react-redux";
-import { AuthConstants } from "@/config/constants";
+import { AuthConstants } from "@/app/config/constants";
 import { Box, Text } from "@chakra-ui/react";
 import { isModalOpen } from "@/store/Slices/AuthModal";
 import { AuthHeadings, AuthBottomTextContent } from "./AuthContent";

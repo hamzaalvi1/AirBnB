@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Box, Text, useDisclosure } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { DropDown } from "../DropDown";
 import { AuthModal } from "../AuthModal";
 import { FiMenu } from "react-icons/fi";
@@ -8,7 +8,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { yourHome, mainMenuWrapper, userMenu } from "./styles";
 import { isModalOpen } from "@/store/Slices/AuthModal";
 import { useSelector, useDispatch } from "react-redux";
-import { AuthConstants } from "@/config/constants";
+import { AuthConstants } from "@/app/config/constants";
 
 function MainMenu(props) {
   const dispatch = useDispatch();

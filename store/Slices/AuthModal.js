@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AuthConstants } from "@/config/constants";
+import { AuthConstants } from "@/app/config/constants";
 
 const initialState = {
   open: false,

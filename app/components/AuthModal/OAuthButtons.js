@@ -4,15 +4,10 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { googleSignIn } from "@/store/Slices/Auth";
 import { useDispatch } from "react-redux";
-import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
 
 function OAuthButtons() {
   const dispatch = useDispatch();
-  // const searchParams = useSearchParams()
-  const callbackUrl = "http://localhost:3000/api/auth/callback/google";
-  // console.log("callbackUrl")
-  const handleGoogleSignIn = () => signIn("google");
+  const handleGoogleSignIn = () => dispatch(googleSignIn());
   return (
     <Flex as={"div"} flexFlow={"column"}>
       <Button
