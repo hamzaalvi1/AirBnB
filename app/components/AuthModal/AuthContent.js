@@ -17,7 +17,7 @@ export const AuthHeadings = (props) => {
 };
 
 export const AuthBottomTextContent = (props) => {
-  const { view, AuthConstants, toggleModal } = props;
+  const { view, AuthConstants, handleToggle } = props;
 
   return view == AuthConstants.SIGNUP ? (
     <Text fontSize={"sm"} textAlign={"center"} textStyle="secondary">
@@ -27,7 +27,7 @@ export const AuthBottomTextContent = (props) => {
         as={"span"}
         color={"blue.500"}
         cursor={"pointer"}
-        onClick={() => toggleModal(AuthConstants.LOGIN)}
+        onClick={() => handleToggle(AuthConstants.LOGIN)}
       >
         Log In
       </Text>
@@ -45,7 +45,7 @@ export const AuthBottomTextContent = (props) => {
         as={"span"}
         color={"blue.500"}
         cursor={"pointer"}
-        onClick={() => toggleModal(AuthConstants.SIGNUP)}
+        onClick={() => handleToggle(AuthConstants.SIGNUP)}
       >
         Sign Up
       </Text>

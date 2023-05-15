@@ -1,14 +1,11 @@
 import { Input } from "../Input";
 import { Formik } from "formik";
 import { Button } from "../Button";
-import { getMe } from "@/store/Slices/Auth";
 import { LoginSchema } from "./ValidationSchema";
-import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 function Login() {
-  const dispatch = useDispatch();
   const router = useRouter();
   const initialValues = {
     email: "",
@@ -16,7 +13,6 @@ function Login() {
   };
   const handleLogin = (values, submitProps) => {
     const { resetForm, setSubmitting } = submitProps;
-    dispatch(getMe({ values, toast, setSubmitting, resetForm, router }));
   };
 
   return (

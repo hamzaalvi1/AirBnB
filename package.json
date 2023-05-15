@@ -14,7 +14,6 @@
     "@emotion/styled": "^11.10.8",
     "@next-auth/prisma-adapter": "^1.0.6",
     "@prisma/client": "^4.14.0",
-    "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "eslint": "8.39.0",
@@ -27,9 +26,8 @@
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.8.0",
-    "react-redux": "^8.0.5",
-    "redux-persist": "^6.0.0",
-    "yup": "^1.1.1"
+    "yup": "^1.1.1",
+    "zustand": "^4.3.8"
   },
   "devDependencies": {
     "prisma": "^4.14.0"
