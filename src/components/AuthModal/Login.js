@@ -4,17 +4,19 @@ import { Button } from "../Button";
 import { getMe } from "@/store/Slices/Auth";
 import { LoginSchema } from "./ValidationSchema";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 function Login() {
   const dispatch = useDispatch();
+  const router = useRouter();
   const initialValues = {
     email: "",
     password: "",
   };
   const handleLogin = (values, submitProps) => {
     const { resetForm, setSubmitting } = submitProps;
-    dispatch(getMe({ values, toast, setSubmitting, resetForm }));
+    dispatch(getMe({ values, toast, setSubmitting, resetForm, router }));
   };
 
   return (
@@ -34,7 +36,7 @@ function Login() {
           handleBlur,
           handleSubmit,
           resetForm,
-          isSubmitting
+          isSubmitting,
         } = formikProps;
 
         return (
@@ -66,11 +68,12 @@ function Login() {
               autoComplete={"off"}
             />
             <Button
+              className="btn-primary"
               fontWeight={"bold"}
               title={"Continue"}
               type="submit"
               variant={"primary"}
-              loading = {isSubmitting}
+              loading={isSubmitting}
             />
           </form>
         );

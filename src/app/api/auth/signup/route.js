@@ -30,5 +30,5 @@ export async function POST(request) {
     },
   });
 
-  return NextResponse.json({ status: 200, data: user });
+  return NextResponse.json({ status: 200, message:"User Successfully Created!" });
 }

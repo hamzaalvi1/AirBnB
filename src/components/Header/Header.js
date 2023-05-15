@@ -14,6 +14,7 @@ function Header() {
         height={"100"}
         alt="logo"
         style={{cursor: "pointer"}}
+        priority={"low"}
       />
       <Explore/>
       <MainMenu/>

@@ -3,6 +3,8 @@ import { ApiMethodsConstants } from "@/config/constants";
 import { AuthRoutes } from "@/config/api-routes";
 import { fetchAPI } from "@/utils";
 import { signIn } from "next-auth/react";
+import { isModalOpen } from "./AuthModal";
+import { AuthConstants } from "@/config/constants";
 
 const initialState = {
   fetching: false,
@@ -13,7 +15,7 @@ const initialState = {
 
 export const registerUser = createAsyncThunk(
   "authentication/registerUser",
-  (
+  async (
     { values, toast, setSubmitting, resetForm },
     { rejectWithValue, dispatch }
   ) => {
@@ -22,18 +24,25 @@ export const registerUser = createAsyncThunk(
       url: AuthRoutes.SIGN_UP,
       data: JSON.stringify(values),
     };
-    fetchAPI(apiParams)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
+    try {
+      const createUser = await fetchAPI(apiParams);
+      if (createUser?.data?.status == 200) {
+        toast.success(createUser?.data?.message);
+        setSubmitting(false);
+        resetForm();
+        dispatch(isModalOpen({ view: AuthConstants.LOGIN, open: true }));
+      }
+    } catch (err) {
+      rejectWithValue(err);
+      return err;
+    }
   }
 );
 
 export const getMe = createAsyncThunk(
   "authentication/getMe",
   async (
-    { values, toast, setSubmitting, resetForm },
+    { values, toast, setSubmitting, resetForm, router },
     { dispatch, rejectWithValue }
   ) => {
     const apiParams = {
@@ -51,11 +60,12 @@ export const getMe = createAsyncThunk(
         const getUser = await fetchAPI(apiParams);
         if (getUser?.data?.status == 200) {
           data = getUser?.data;
-          toast.success('Logged in');
-          setSubmitting(false) 
-          resetForm()
-
-        } 
+          toast.success("Logged in");
+          setSubmitting(false);
+          resetForm();
+          router.refresh();
+          dispatch(isModalOpen({ view: AuthConstants.SIGNUP, open: false }));
+        }
       }
       return data;
     } catch (error) {

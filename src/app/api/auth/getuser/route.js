@@ -8,10 +8,7 @@ export async function POST(request) {
 
   if (!user) {
     throw new Error({message:"Email does not exist"})
-    // return NextResponse.json({
-    //   status: "403",
-    //   message: "Email already exists",
-    // });
+  
   }
 
   return NextResponse.json({ ...user ,status:200});

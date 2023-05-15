@@ -4,6 +4,7 @@ import { Button } from "../Button";
 import { registerUser } from "@/store/Slices/Auth";
 import { SignUpSchema } from "./ValidationSchema";
 import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 function Register() {
   const dispatch = useDispatch();
@@ -14,8 +15,7 @@ function Register() {
   };
   const handleSignUp = (values, submitProps) => {
     const { resetForm, setSubmitting } = submitProps;
-
-    dispatch(registerUser({ values, undefined, setSubmitting, resetForm }));
+    dispatch(registerUser({ values, toast, setSubmitting, resetForm }));
   };
 
   return (
@@ -34,7 +34,7 @@ function Register() {
           handleChange,
           handleBlur,
           handleSubmit,
-          resetForm,
+          isSubmitting,
         } = formikProps;
 
         return (
@@ -83,6 +83,7 @@ function Register() {
               title={"Continue"}
               type="submit"
               variant={"primary"}
+              loading={isSubmitting}
             />
           </form>
         );
