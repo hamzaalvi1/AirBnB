@@ -39,7 +39,7 @@ export const AuthBottomTextContent = (props) => {
       textStyle="secondary"
       cursor={"pointer"}
     >
-      Don &#180; t have an account ?{" "}
+      Don&#180;t have an account ?{" "}
       <Text
         fontWeight={"bold"}
         as={"span"}

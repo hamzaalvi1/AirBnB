@@ -74,6 +74,20 @@ export const getMe = createAsyncThunk(
   }
 );
 
+export const googleSignIn = createAsyncThunk(
+  "authentication/google",
+  async ({callbackUrl}) => {
+    console.log(callbackUrl);
+    try {
+      const getCredentials = await signIn("google");
+
+      console.log(getCredentials);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
 const Authentication = createSlice({
   name: "Authentication",
   initialState,
