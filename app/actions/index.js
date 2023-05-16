@@ -1,3 +1,3 @@
 import registerUser from "./registerUser";
-
-export { registerUser };
+import loginUserWithCredentials from "./loginUser";
+export { registerUser, loginUserWithCredentials };

@@ -3,16 +3,28 @@ import { Formik } from "formik";
 import { Button } from "../Button";
 import { LoginSchema } from "./ValidationSchema";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
+import { loginUserWithCredentials } from "@/app/actions";
+import { useAuthModal } from "@/app/hooks";
+
 
 function Login() {
-  const router = useRouter();
+  const { refresh } = useRouter();
+  const { onClose } = useAuthModal();
   const initialValues = {
     email: "",
     password: "",
   };
-  const handleLogin = (values, submitProps) => {
+  const handleLogin = async (values, submitProps) => {
     const { resetForm, setSubmitting } = submitProps;
+    const userLogin = await loginUserWithCredentials({
+      values,
+    });
+    if (userLogin?.success) {
+      setSubmitting(false);
+      resetForm();
+      onClose();
+      refresh();
+    }
   };
 
   return (

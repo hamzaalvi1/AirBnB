@@ -1,3 +1,3 @@
-import { nunito, inter } from "./Fonts";
+import { nunito, } from "./Fonts";
 
-export { inter, nunito };
+export {  nunito };
