@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 
-import prisma from "@/libs/prismadb";
+import prisma from "../../../libs/prismadb";
 
-  const checkEmailExist = async (email) => {
+const checkEmailExist = async (email) => {
   const user = await prisma.user.findUnique({ where: { email } });
   return !!user;
 };
@@ -30,5 +30,8 @@ export async function POST(request) {
     },
   });
 
-  return NextResponse.json({ status: 200, message:"User Successfully Created!" });
+  return NextResponse.json({
+    status: 200,
+    message: "User Successfully Created!",
+  });
 }

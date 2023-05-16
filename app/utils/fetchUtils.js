@@ -6,7 +6,7 @@ const fetchAPI = (fetchParams) => {
   return axios({
     method: method,
     url: `${BaseURL}${url}`,
-    ...(data && { data: data }),
+    ...(data && { data: JSON.stringify(data) }),
     ...(headers && headers),
     ...(queryParams && { params: queryParams }),
   });

@@ -2,16 +2,18 @@ import { Input } from "../Input";
 import { Formik } from "formik";
 import { Button } from "../Button";
 import { SignUpSchema } from "./ValidationSchema";
-import toast from "react-hot-toast";
-
+import { registerUser } from "@/app/actions";
+import { useAuthModal } from "@/app/hooks";
 function Register() {
+  const { onOpen } = useAuthModal();
   const initialValues = {
     name: "",
     email: "",
     password: "",
   };
-  const handleSignUp = (values, submitProps) => {
+  const handleSignUp = async (values, submitProps) => {
     const { resetForm, setSubmitting } = submitProps;
+    registerUser({ values, resetForm, setSubmitting,onOpen });
   };
 
   return (

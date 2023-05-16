@@ -1,14 +1,14 @@
 "use client";
 import { ChakraProvider } from "@chakra-ui/react";
-import ToasterProvider from "./ToasterProvider";
 import { SessionProvider } from "next-auth/react";
+import { ToasterProvider } from "../Toaster";
 import { theme } from "@/app/styles/theme";
 
 function Providers({ children }) {
   return (
     <SessionProvider>
-      <ToasterProvider />
       <ChakraProvider resetCSS={true} theme={theme}>
+        <ToasterProvider/>
         {children}
       </ChakraProvider>
     </SessionProvider>
