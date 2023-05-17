@@ -1,3 +1,5 @@
 import registerUser from "./registerUser";
 import loginUserWithCredentials from "./loginUser";
-export { registerUser, loginUserWithCredentials };
+import loginWithSocialAccounts from "./SocialLogin";
+
+export { registerUser, loginUserWithCredentials, loginWithSocialAccounts };
