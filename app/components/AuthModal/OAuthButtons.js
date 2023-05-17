@@ -30,7 +30,7 @@ function OAuthButtons() {
         textStyle="secondary"
         variant={"oAuth"}
         title="Continue with Github "
-        handleClick={() => signIn("github", { redirect: false })}
+        handleClick={() => signIn("github")}
         leftIcon={
           <FaGithub
             size={24}
