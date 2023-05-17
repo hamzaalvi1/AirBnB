@@ -11,7 +11,7 @@ function OAuthButtons() {
         textStyle="secondary"
         variant={"oAuth"}
         title="Continue with Google"
-        handleClick={() => signIn("google",{redirect:false})}
+        handleClick={() => signIn("google", { redirect: false })}
         // loading={oAuthLoading.google}
         leftIcon={
           <FcGoogle
@@ -30,7 +30,7 @@ function OAuthButtons() {
         textStyle="secondary"
         variant={"oAuth"}
         title="Continue with Github "
-        handleClick={() => signIn("github",{redirect:false})}
+        handleClick={() => signIn("github", { redirect: false })}
         leftIcon={
           <FaGithub
             size={24}

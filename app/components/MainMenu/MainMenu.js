@@ -1,22 +1,24 @@
 "use client";
-import { useState } from "react";
+import Image from "next/image";
 import { Box, Text, useDisclosure } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 import { DropDown } from "../DropDown";
 import { AuthModal } from "../AuthModal";
 import { FiMenu } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
-import { AuthConstants } from "@/app/config/constants";
+import { AuthConstants, StatusConstants } from "@/app/config/constants";
 import { useAuthModal } from "@/app/hooks";
 import { yourHome, mainMenuWrapper, userMenu } from "./styles";
+import { signOut } from "next-auth/react";
 
 function MainMenu(props) {
+  const { status, data } = useSession();
   const { title, isOpen, onOpen, onClose } = useAuthModal();
   const {
     isOpen: isMenuOpen,
     onToggle: toggleMenu,
     onClose: closeMenu,
   } = useDisclosure();
-
   const handleModelOpen = (title) => {
     closeMenu();
     onOpen({ title: title });
@@ -31,13 +33,28 @@ function MainMenu(props) {
       handleClick: () => handleModelOpen(AuthConstants.LOGIN),
     },
     { name: "Airbnb your home", handleClick: () => console.log("HELLO") },
-    { name: "Help", handleClick: () => console.log("HELLO") },
+    { name: "Logout", handleClick: () => signOut() },
   ];
   const menuWrapper = () => {
     return (
       <Box as={"div"} sx={userMenu}>
         <FiMenu size={18} />
-        <FaUserCircle size={26} color="#A0AEC0" />
+        {status == StatusConstants.UNAUTHENTICATED ? (
+          <FaUserCircle size={26} color="#A0AEC0" />
+        ) : (
+          <Image
+            style={{borderRadius:"50%"}}
+            src={
+              data && data?.user?.image
+                ? data?.user?.image
+                : "/images/placeholder.jpg"
+            }
+            width={30}
+            height={30}
+            priority={"low"}
+            alt={"avatar-img"}
+          />
+        )}
       </Box>
     );
   };
