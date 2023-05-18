@@ -4,5 +4,5 @@ export const navbarStyles = {
   alignItems: "center",
   borderBottom: "1px solid #dddddd",
   paddingBlock: "15px",
-  paddingInline : "15px"
+  paddingInline : "30px"
 };

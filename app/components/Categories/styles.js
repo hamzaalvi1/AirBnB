@@ -1,7 +1,7 @@
 export const categoriesStyles = {
   padding: "20px 10px",
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "space-around",
   alignItems: "center",
 };
 
