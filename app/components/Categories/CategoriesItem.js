@@ -1,11 +1,11 @@
 "use client";
 import { Box } from "@chakra-ui/react";
-import { categoriesItemStyles } from "./styles";
+import { categoriesItemStyles, selectedStyles } from "./styles";
 import { useSearchParams, useRouter } from "next/navigation";
 import { parseQueryParams, appendQueryParams } from "@/app/utils";
 
 function CategoriesItem(props) {
-  const { icon: Icon, label } = props;
+  const { icon: Icon, label, selected } = props;
   const params = useSearchParams();
   const router = useRouter();
 
@@ -26,7 +26,11 @@ function CategoriesItem(props) {
   };
 
   return (
-    <Box as={"div"} sx={categoriesItemStyles} onClick={handleAddQueryParams}>
+    <Box
+      as={"div"}
+      sx={{ ...categoriesItemStyles, ...(selected && selectedStyles) }}
+      onClick={handleAddQueryParams}
+    >
       <Icon size={24} />
       <Box as={"span"} fontSize={"sm"} fontWeight={"bold"}>
         {" "}

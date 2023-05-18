@@ -18,6 +18,7 @@ import { FaSkiing } from "react-icons/fa";
 import { BsSnow } from "react-icons/bs";
 import { IoDiamond } from "react-icons/io5";
 import { MdOutlineVilla } from "react-icons/md";
+import { useSearchParams, usePathname } from "next/navigation";
 
 export const categories = [
   {
@@ -83,10 +84,16 @@ export const categories = [
 ];
 
 const Categories = () => {
+  const params = useSearchParams();
   return (
     <Box as={"div"} sx={categoriesStyles}>
       {categories.map(({ label, icon }) => (
-        <CategoriesItem key={label} icon={icon} label={label} />
+        <CategoriesItem
+          key={label}
+          icon={icon}
+          label={label}
+          selected={params.get("category") == label}
+        />
       ))}
     </Box>
   );

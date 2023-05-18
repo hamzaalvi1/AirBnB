@@ -14,4 +14,16 @@ export const categoriesItemStyles = {
   gap: "5px",
   cursor: "pointer",
   marginInline: "10px",
+  paddingBottom: "5px",
+  transition: "0.25s",
+  borderBottom: "2px solid transparent",
+  "&:hover": {
+    color: "#aeb0b2",
+    borderBottom: "2px solid #aeb0b2;",
+
+  }
 };
+export const selectedStyles ={
+  color:"#aeb0b2",
+  borderBottom: "2px solid #aeb0b2"
+}
