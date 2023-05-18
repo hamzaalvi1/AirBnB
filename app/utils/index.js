@@ -1,3 +1,3 @@
 import fetchAPI from "./fetchUtils";
-
-export { fetchAPI };
+import { parseQueryParams, appendQueryParams } from "./urlUtils";
+export { fetchAPI, parseQueryParams, appendQueryParams };
