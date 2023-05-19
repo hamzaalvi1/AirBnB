@@ -5,16 +5,18 @@ import { useSession } from "next-auth/react";
 import { Spinner } from "@chakra-ui/react";
 import { DropDown } from "../DropDown";
 import { AuthModal } from "../AuthModal";
+import { RentModal } from "../RentModal";
 import { FiMenu } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 import { AuthConstants, StatusConstants } from "@/app/config/constants";
-import { useAuthModal } from "@/app/hooks";
+import { useAuthModal, useRentModal } from "@/app/hooks";
 import { yourHome, mainMenuWrapper, userMenu } from "./styles";
 import { signOut } from "next-auth/react";
 
 function MainMenu(props) {
   const { status, data } = useSession();
   const { title, isOpen, onOpen, onClose } = useAuthModal();
+  const { isRentModalOpen, rentModalOpen, rentModalClose } = useRentModal();
   const {
     isOpen: isMenuOpen,
     onToggle: toggleMenu,
@@ -83,7 +85,12 @@ function MainMenu(props) {
   return (
     <>
       <Box as={"div"} sx={mainMenuWrapper}>
-        <Text fontSize={"14px"} fontWeight={"bold"} sx={yourHome}>
+        <Text
+          fontSize={"14px"}
+          fontWeight={"bold"}
+          sx={yourHome}
+          onClick={() => rentModalOpen()}
+        >
           Airbnb your home
         </Text>
         <Box as={"span"}>
@@ -120,6 +127,12 @@ function MainMenu(props) {
           />
         )}
       </Box>
+      <RentModal
+        isOpen={isRentModalOpen}
+        onClose={rentModalClose}
+        title={"Airbnb Your Home"}
+        onOpen={rentModalOpen}
+      />
       <AuthModal
         isOpen={isOpen}
         onClose={onClose}
