@@ -1,10 +1,12 @@
 "use client";
+import { useState } from "react";
 import { Modal } from "../Modal";
-import { Box } from "@chakra-ui/react";
-import { RentHeading } from "./RentContent";
+import { Formik } from "formik";
+import RentStepper from "./RentStepper";
 
 const RentModal = (props) => {
   const { isOpen, onClose, title } = props;
+  const [rentStepper, setRentStepper] = useState(0);
 
   return (
     <Modal
@@ -14,12 +16,7 @@ const RentModal = (props) => {
       size={"lg"}
       styleProps={{ borderRadius: "md" }}
     >
-      <Box as="div" my="1rem">
-        <RentHeading
-          heading={"Which of these best describes your place"}
-          paragraph={"Pick a category"}
-        />
-      </Box>
+      <RentStepper step={rentStepper} />
     </Modal>
   );
 };

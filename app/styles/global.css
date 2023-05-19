@@ -1,8 +1,33 @@
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+    display: none;
+}
+
+::-webkit-scrollbar-track-piece {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    border-radius: 10px;
+    background-color: #ff385c;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 .chakra-button__spinner {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
 }
-.btn-primary:hover[disabled]{
- background: #ff385c !important;
+
+.btn-primary:hover[disabled] {
+    background: #ff385c !important;
 }

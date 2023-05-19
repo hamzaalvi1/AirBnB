@@ -20,7 +20,7 @@ import { IoDiamond } from "react-icons/io5";
 import { MdOutlineVilla } from "react-icons/md";
 import { useSearchParams, usePathname } from "next/navigation";
 
-export const categories = [
+export const categoriesList = [
   {
     label: "Beach",
     icon: TbBeach,
@@ -87,7 +87,7 @@ const Categories = () => {
   const params = useSearchParams();
   return (
     <Box as={"div"} sx={categoriesStyles}>
-      {categories.map(({ label, icon }) => (
+      {categoriesList.map(({ label, icon }) => (
         <CategoriesItem
           key={label}
           icon={icon}
