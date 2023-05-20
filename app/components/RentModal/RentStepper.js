@@ -5,14 +5,20 @@ import { RentStepsConstants } from "@/app/config/constants";
 import Category from "./Category";
 
 function RentStepper(props) {
-  const { step } = props;
-  const handleSwitchSteps = (step) => {
-    switch (step) {
+  const { steps, handleValuesChange, values, errors } = props;
+  const handleSwitchSteps = (steps) => {
+    switch (steps) {
       case RentStepsConstants.CATEGORY:
-        return <Category />;
+        return (
+          <Category
+            handleValuesChange={handleValuesChange}
+            values={values}
+            errors={errors}
+          />
+        );
     }
   };
-  return handleSwitchSteps(step);
+  return handleSwitchSteps(steps);
 }
 
 export default RentStepper;

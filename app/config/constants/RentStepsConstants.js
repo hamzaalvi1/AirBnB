@@ -7,4 +7,13 @@ const RentStepsConstants = {
   PRICE: 5,
 };
 
+export const RentConstants = {
+    CATEGORY: "category",
+    LOCATION: "location",
+    INFO: "info",
+    IMAGES: "images",
+    DESCRIPTION: "description",
+    PRICE: "price",
+}
+
 export default RentStepsConstants

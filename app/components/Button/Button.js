@@ -11,6 +11,7 @@ function UIButton(props) {
     loading = false,
     type = "click",
     children,
+    disabled = false,
     ...rest
   } = props;
 
@@ -24,6 +25,7 @@ function UIButton(props) {
       sx={styleProps}
       className={className}
       isLoading={loading}
+      isDisabled = {disabled}
       {...rest}
     >
       {title}

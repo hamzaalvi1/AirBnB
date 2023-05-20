@@ -24,3 +24,13 @@ export const categoryBoxStyles = {
     borderColor: "#000",
   },
 };
+
+export const stepperButtons = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "15px",
+};
+
+export const selectedStyles = {
+  borderColor: "#000",
+};

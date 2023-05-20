@@ -13,6 +13,21 @@ const primary = defineStyle({
   marginBlock: "20px",
 });
 
+const secondary = defineStyle({
+  borderRadius: "md",
+  fontWeight: "semibold",
+  color: "#000",
+  backgroundColor: "transparent",
+  width: "100%",
+  display: "block",
+  cursor: "pointer",
+  minHeight: "50px",
+  fontSize: "md",
+  border: "2px solid",
+  borderColor: "#000",
+  marginBlock: "20px",
+});
+
 const oAuth = {
   fontSize: "md",
   fontWeight: "bold",
@@ -28,5 +43,5 @@ const oAuth = {
 };
 
 export default defineStyleConfig({
-  variants: { primary, oAuth },
+  variants: { primary, oAuth, secondary },
 });
