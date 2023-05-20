@@ -3,6 +3,7 @@ import { RentStepsConstants } from "@/app/config/constants";
 
 // Stepper
 import Category from "./Category";
+import Location from "./Location";
 
 function RentStepper(props) {
   const { steps, handleValuesChange, values, errors } = props;
@@ -16,6 +17,8 @@ function RentStepper(props) {
             errors={errors}
           />
         );
+      case RentStepsConstants.LOCATION:
+        return <Location />;
     }
   };
   return handleSwitchSteps(steps);
