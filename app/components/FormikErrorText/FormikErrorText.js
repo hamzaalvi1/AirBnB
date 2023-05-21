@@ -3,7 +3,6 @@ import { FormikErrorStyles } from "./FormikErrorStyles";
 
 const FormikErrorText = (props) => {
   let { fieldName, errorObj, ...rest } = props;
-  console.log({...rest});
 
   return (
     <>

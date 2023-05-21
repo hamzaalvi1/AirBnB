@@ -18,7 +18,13 @@ function RentStepper(props) {
           />
         );
       case RentStepsConstants.LOCATION:
-        return <Location />;
+        return (
+          <Location
+            handleValuesChange={handleValuesChange}
+            values={values}
+            errors={errors}
+          />
+        );
     }
   };
   return handleSwitchSteps(steps);

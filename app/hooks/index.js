@@ -1,4 +1,6 @@
 import useAuthModal from "./useAuthModal";
 import useRentModal from "./useRentModal";
+import useCountries from "./useCountries";
 
-export { useAuthModal, useRentModal };
+
+export { useAuthModal, useRentModal, useCountries };
