@@ -34,6 +34,9 @@ const RentModal = (props) => {
     if (rentStepper == RentStepsConstants.CATEGORY && !values.category) {
       setError(RentConstants.CATEGORY, "Place is required please select.");
       return;
+    } else if (rentStepper == RentStepsConstants.LOCATION && !values.location) {
+      setError(RentConstants.LOCATION, "Please select the location.");
+      return;
     } else {
       setRentStepper(rentStepper + 1);
     }

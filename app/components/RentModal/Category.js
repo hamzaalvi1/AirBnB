@@ -4,6 +4,7 @@ import { RentHeading } from "./RentContent";
 import { categoriesList } from "@/app/components/Categories";
 import { categoriesListStyles } from "./RentModalStyles";
 import { FormikErrorText } from "../FormikErrorText";
+import { RentConstants } from "@/app/config/constants";
 
 import CategoryBox from "./CategoryBox";
 
@@ -31,7 +32,7 @@ function Category(props) {
       </Box>
       <Box as="span" display={"block"} textAlign={"center"}>
         <FormikErrorText
-          fieldName="category"
+          fieldName={RentConstants.CATEGORY}
           errorObj={errors}
           fontSize={"15px"}
           margin={"10px 0 0"}

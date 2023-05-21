@@ -4,7 +4,9 @@ import { Box, Flex } from "@chakra-ui/react";
 import { RentHeading } from "./RentContent";
 import { Select } from "../Select";
 import { useCountries } from "@/app/hooks";
-import { RentConstants } from "@/app/config/constants";
+import { RentConstants} from "@/app/config/constants";
+import { FormikErrorText } from "../FormikErrorText";
+
 import Flags from "country-flag-icons/react/3x2";
 
 function Location(props) {
@@ -39,6 +41,14 @@ function Location(props) {
         options={getAllCountries()}
         formatOptionLabel={(options) => formattedOptions(options)}
       />
+       <FormikErrorText
+          fieldName={RentConstants.LOCATION}
+          errorObj={errors}
+          fontSize={"15px"}
+          margin={"10px 0 0"}
+          fontWeight={"black"}
+          padding={0}
+        />
     </Box>
   );
 }
