@@ -5,6 +5,7 @@ import { RentStepsConstants } from "@/app/config/constants";
 import Category from "./Category";
 import Location from "./Location";
 import Info from "./Info";
+import Images from "./Images";
 
 function RentStepper(props) {
   const { steps, handleValuesChange, values, errors } = props;
@@ -27,11 +28,10 @@ function RentStepper(props) {
           />
         );
       case RentStepsConstants.INFO:
+        return <Info handleValuesChange={handleValuesChange} values={values} />;
+      case RentStepsConstants.IMAGES:
         return (
-          <Info
-            handleValuesChange={handleValuesChange}
-            values={values}
-          />
+          <Images handleValuesChange={handleValuesChange} values={values} />
         );
     }
   };
