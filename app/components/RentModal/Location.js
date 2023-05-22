@@ -3,6 +3,7 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { RentHeading } from "./RentContent";
 import { Select } from "../Select";
+import { Map } from "../Map";
 import { useCountries } from "@/app/hooks";
 import { RentConstants} from "@/app/config/constants";
 import { FormikErrorText } from "../FormikErrorText";
@@ -49,6 +50,7 @@ function Location(props) {
           fontWeight={"black"}
           padding={0}
         />
+        <Map/>
     </Box>
   );
 }
