@@ -8,8 +8,6 @@ import "leaflet/dist/leaflet.css";
 
 function Map(props) {
   const { coords } = props;
-  const DEFAULT_WIDTH = 200;
-  const DEFAULT_HEIGHT = 200;
   const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
   const attribution =
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
@@ -27,14 +25,14 @@ function Map(props) {
   }, []);
 
   return (
-    <div style={{ width:"100%",height:"350px"}}>
+    <div className="map-container">
       <MapContainer
         center={coords || [51, -0.09]}
-        zoom={coords ? 4 : 4}
+        zoom={coords ? 4 : 3}
         scrollWheelZoom={false}
         className = "location-map"
       >
-        <TileLayer url={url} attribution={attribution} />
+        <TileLayer url={url}  />
         {coords && <Marker position={coords} />}
       </MapContainer>
     </div>

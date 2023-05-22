@@ -1,17 +1,26 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+import { useMemo } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { RentHeading } from "./RentContent";
 import { Select } from "../Select";
-import { Map } from "../Map";
 import { useCountries } from "@/app/hooks";
-import { RentConstants} from "@/app/config/constants";
+import { RentConstants } from "@/app/config/constants";
 import { FormikErrorText } from "../FormikErrorText";
 
 import Flags from "country-flag-icons/react/3x2";
 
 function Location(props) {
   const { handleValuesChange, values, errors } = props;
+  const Map = useMemo(
+    () =>
+      dynamic(() => import("../Map"), {
+        ssr: false,
+      }),
+    [values.location]
+  );
   const { getAllCountries } = useCountries();
   const formattedOptions = (options) => {
     const Flag = Flags[options.countryCode];
@@ -42,15 +51,15 @@ function Location(props) {
         options={getAllCountries()}
         formatOptionLabel={(options) => formattedOptions(options)}
       />
-       <FormikErrorText
-          fieldName={RentConstants.LOCATION}
-          errorObj={errors}
-          fontSize={"15px"}
-          margin={"10px 0 0"}
-          fontWeight={"black"}
-          padding={0}
-        />
-        <Map/>
+      <FormikErrorText
+        fieldName={RentConstants.LOCATION}
+        errorObj={errors}
+        fontSize={"15px"}
+        margin={"10px 0 0"}
+        fontWeight={"black"}
+        padding={0}
+      />
+      <Map coords={values?.location?.latlng} />
     </Box>
   );
 }
