@@ -11,7 +11,7 @@ export const RentConstants = {
   CATEGORY: "category",
   LOCATION: "location",
   INFO: "info",
-  IMAGES: "images",
+  IMAGES: "imgSrc",
   DESCRIPTION: "description",
   PRICE: "price",
   GUEST_COUNT: "guestCount",

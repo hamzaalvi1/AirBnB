@@ -43,5 +43,20 @@ export const counterButton = {
   cursor: "pointer",
   borderRadius: "50%",
   border: "2px solid",
-  borderColor: "#718096"
-}
+  borderColor: "#718096",
+};
+export const imageUploadStyles = {
+  position: "relative",
+  padding: "50px",
+  border: "2px dashed",
+  borderColor: "#718096",
+  cursor: "pointer",
+  gap: "10px",
+  borderRadius: "5px",
+  margin: "10px 0 0",
+  transition: "0.25s",
+  "&:hover":{
+    opacity: 0.75
+  }
+
+};

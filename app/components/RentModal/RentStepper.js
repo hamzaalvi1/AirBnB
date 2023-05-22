@@ -31,7 +31,11 @@ function RentStepper(props) {
         return <Info handleValuesChange={handleValuesChange} values={values} />;
       case RentStepsConstants.IMAGES:
         return (
-          <Images handleValuesChange={handleValuesChange} values={values} />
+          <Images
+            handleValuesChange={handleValuesChange}
+            values={values}
+            errors={errors}
+          />
         );
     }
   };

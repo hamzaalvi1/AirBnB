@@ -1,12 +1,62 @@
-"use client"
+"use client";
+import { Flex, Box, Spinner } from "@chakra-ui/react";
+import { TbPhotoPlus } from "react-icons/tb";
+import { CldUploadWidget } from "next-cloudinary";
+import { imageUploadStyles } from "./RentModalStyles";
+import { RentConstants } from "@/app/config/constants";
+import Image from "next/image";
 
-const ImageUpload = (props)=>{
+const uploadPreset = "nrlgxtxc";
 
-return(
-<></>    
-)
+const ImageUpload = (props) => {
+  const { handleValuesChange, values } = props;
 
-}
+  const handleUpload = (response) => {
+    handleValuesChange(RentConstants.IMAGES, response?.info?.secure_url);
+  };
 
-export default ImageUpload
+  return (
+    <CldUploadWidget
+      onUpload={handleUpload}
+      uploadPreset={uploadPreset}
+      options={{
+        maxFiles: 1,
+      }}
+    >
+      {({ open, error, results }) => {
+        return (
+          <Flex
+            align={"center"}
+            justify={"center"}
+            flexFlow={"column"}
+            sx={imageUploadStyles}
+            onClick={() => open?.()}
+          >
+            <TbPhotoPlus size={50} />
+            <Box fontWeight={"bold"} fontSize={"lg"}>
+              Click to Upload
+            </Box>
+            {values?.imgSrc && (
+              <Box
+                pos={"absolute"}
+                top={0}
+                left={0}
+                width={"100%"}
+                height={"100%"}
+              >
+                <Image
+                  src={values?.imgSrc}
+                  fill
+                  alt="imgSrc"
+                  style={{ objectFit: "cover" }}
+                />
+              </Box>
+            )}
+          </Flex>
+        );
+      }}
+    </CldUploadWidget>
+  );
+};
 
+export default ImageUpload;
