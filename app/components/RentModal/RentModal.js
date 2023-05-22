@@ -14,12 +14,15 @@ const RentModal = (props) => {
   const [rentStepper, setRentStepper] = useState(RentStepsConstants.CATEGORY);
 
   const initialValues = {
-    [RentConstants.CATEGORY]: "",
-    [RentConstants.LOCATION]: "",
     [RentConstants.INFO]: "",
+    [RentConstants.PRICE]: 1,
     [RentConstants.IMAGES]: "",
+    [RentConstants.LOCATION]: null,
+    [RentConstants.CATEGORY]: "",
+    [RentConstants.ROOM_COUNT]: 1,
+    [RentConstants.GUEST_COUNT]: 1,
     [RentConstants.DESCRIPTION]: "",
-    [RentConstants.PRICE]: "",
+    [RentConstants.BATHROOM_COUNT]: 1,
   };
 
   const handleGoBack = (e) => {

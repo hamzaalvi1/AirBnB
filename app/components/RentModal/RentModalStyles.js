@@ -34,3 +34,14 @@ export const stepperButtons = {
 export const selectedStyles = {
   borderColor: "#000",
 };
+export const counterButton = {
+  width: "30px",
+  height: "30px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  cursor: "pointer",
+  borderRadius: "50%",
+  border: "2px solid",
+  borderColor: "#718096"
+}

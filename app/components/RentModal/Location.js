@@ -3,10 +3,10 @@
 import dynamic from "next/dynamic";
 
 import { useMemo } from "react";
-import { Box, Flex } from "@chakra-ui/react";
-import { RentHeading } from "./RentContent";
 import { Select } from "../Select";
 import { useCountries } from "@/app/hooks";
+import { RentHeading } from "./RentContent";
+import { Box, Flex } from "@chakra-ui/react";
 import { RentConstants } from "@/app/config/constants";
 import { FormikErrorText } from "../FormikErrorText";
 
