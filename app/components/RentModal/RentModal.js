@@ -15,8 +15,9 @@ const RentModal = (props) => {
 
   const initialValues = {
     [RentConstants.INFO]: "",
-    [RentConstants.PRICE]: 1,
+    [RentConstants.PRICE]: 0,
     [RentConstants.IMAGES]: "",
+    [RentConstants.TITLE]: "",
     [RentConstants.LOCATION]: null,
     [RentConstants.CATEGORY]: "",
     [RentConstants.ROOM_COUNT]: 1,
@@ -24,7 +25,10 @@ const RentModal = (props) => {
     [RentConstants.DESCRIPTION]: "",
     [RentConstants.BATHROOM_COUNT]: 1,
   };
-
+  const handleOnClose = () => {
+    setRentStepper(RentStepsConstants.CATEGORY);
+    onClose();
+  };
   const handleGoBack = (e) => {
     e.stopPropagation();
     if (rentStepper == RentStepsConstants.CATEGORY) {
@@ -40,23 +44,18 @@ const RentModal = (props) => {
     } else if (rentStepper == RentStepsConstants.LOCATION && !values.location) {
       setError(RentConstants.LOCATION, "Please select the location.");
       return;
-    }
-    // else if (rentStepper == RentStepsConstants.IMAGES && !values.imgSrc) {
-    //   setError(RentConstants.IMAGES, "Please select the upload image.");
-    //   return;
-    // }
-    else if (
-      (rentStepper == RentStepsConstants.DESCRIPTION && !values.title) ||
+    } else if (rentStepper == RentStepsConstants.IMAGES && !values.imgSrc) {
+      setError(RentConstants.IMAGES, "Please select the upload image.");
+      return;
+    } else if (rentStepper == RentStepsConstants.DESCRIPTION && !values.title) {
+      setError(RentConstants.TITLE, "Title is mandatory field");
+      return;
+    } else if (
+      rentStepper == RentStepsConstants.DESCRIPTION &&
       !values.description
     ) {
-      if (!values.title) {
-        setError(RentConstants.TITLE, "Title is mandatory field.");
-        return;
-      }
-      if (!values.description) {
-        setError(RentConstants.DESCRIPTION, "Description is mandatory field.");
-        return;
-      }
+      setError(RentConstants.DESCRIPTION, "Description is mandatory field");
+      return;
     } else {
       setRentStepper(rentStepper + 1);
     }
@@ -64,7 +63,7 @@ const RentModal = (props) => {
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleOnClose}
       size={"lg"}
       styleProps={{ borderRadius: "md" }}
       title={title}
@@ -72,7 +71,9 @@ const RentModal = (props) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          console.log(values);
+          if (rentStepper == RentStepsConstants.PRICE && !values.price) {
+            return;
+          }
         }}
       >
         {(formikProps) => {
@@ -104,18 +105,21 @@ const RentModal = (props) => {
                   disabled={rentStepper === RentStepsConstants.CATEGORY}
                   handleClick={handleGoBack}
                 />
-                {rentStepper === RentStepsConstants.PRICE ? (
+                {rentStepper == RentStepsConstants.PRICE ? (
                   <Button
                     fontWeight={"bold"}
                     title={"Submit"}
                     type={"submit"}
                     variant={"primary"}
-                    loading={isSubmitting}
+                    loading={false}
                   />
                 ) : (
                   <Button
                     fontWeight={"bold"}
-                    handleClick={() => handleNextStep(values, setFieldError)}
+                    handleClick={(e) => {
+                      e.stopPropagation;
+                      handleNextStep(values, setFieldError);
+                    }}
                     title={"Next"}
                     type={"button"}
                     variant={"primary"}

@@ -6,7 +6,6 @@ import { TextArea } from "../TextArea";
 import { RentConstants } from "@/app/config/constants";
 function Description(props) {
   const { values, errors, handleValuesChange } = props;
-
   return (
     <Box as="div" mt="1rem">
       <RentHeading
@@ -15,6 +14,7 @@ function Description(props) {
       />
       <Flex flexDirection={"column"} gap="15px">
         <Input
+          errorTextStyle = {{fontWeight: "black",marginLeft: "5px"}} 
           name={RentConstants.TITLE}
           placeholder="Title"
           value={values.title}
@@ -22,7 +22,9 @@ function Description(props) {
           isInvalid={errors.title}
           error={errors.title}
           errorText={"Title is mandatory field."}
-          onChange={() => handleValuesChange(RentConstants.TITLE, values.title)}
+          onChange={(e) =>
+            handleValuesChange(RentConstants.TITLE, e.target.value)
+          }
         />
         <TextArea
           name={RentConstants.DESCRIPTION}
@@ -34,8 +36,8 @@ function Description(props) {
           isInvalid={errors.description}
           error={errors.description}
           errorText={"Description is mandatory field."}
-          onChange={() =>
-            handleValuesChange(RentConstants.DESCRIPTION, values.description)
+          onChange={(e) =>
+            handleValuesChange(RentConstants.DESCRIPTION, e.target.value)
           }
         />
       </Flex>

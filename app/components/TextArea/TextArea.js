@@ -43,10 +43,10 @@ function CustomTextArea(props) {
       {error && (
         <Text
           fontSize={"15px"}
-          margin={"10px 0 0"}
           fontWeight={"black"}
           padding={0}
           color={"red.500"}
+          marginLeft={"5px"}
         >
           {errorText}
         </Text>
