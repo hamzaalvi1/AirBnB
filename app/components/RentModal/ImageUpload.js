@@ -1,5 +1,5 @@
 "use client";
-import { Flex, Box, Spinner } from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
 import { TbPhotoPlus } from "react-icons/tb";
 import { CldUploadWidget } from "next-cloudinary";
 import { imageUploadStyles } from "./RentModalStyles";
@@ -12,7 +12,9 @@ const ImageUpload = (props) => {
   const { handleValuesChange, values } = props;
 
   const handleUpload = (response) => {
-    handleValuesChange(RentConstants.IMAGES, response?.info?.secure_url);
+    if (response) {
+      handleValuesChange(RentConstants.IMAGES, response?.info?.secure_url);
+    }
   };
 
   return (

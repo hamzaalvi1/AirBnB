@@ -17,6 +17,7 @@ export const RentConstants = {
   GUEST_COUNT: "guestCount",
   ROOM_COUNT: "roomCount",
   BATHROOM_COUNT: "bathroomCount",
+  TITLE: "title",
 };
 
 export default RentStepsConstants;

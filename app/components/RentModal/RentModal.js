@@ -40,6 +40,23 @@ const RentModal = (props) => {
     } else if (rentStepper == RentStepsConstants.LOCATION && !values.location) {
       setError(RentConstants.LOCATION, "Please select the location.");
       return;
+    }
+    // else if (rentStepper == RentStepsConstants.IMAGES && !values.imgSrc) {
+    //   setError(RentConstants.IMAGES, "Please select the upload image.");
+    //   return;
+    // }
+    else if (
+      (rentStepper == RentStepsConstants.DESCRIPTION && !values.title) ||
+      !values.description
+    ) {
+      if (!values.title) {
+        setError(RentConstants.TITLE, "Title is mandatory field.");
+        return;
+      }
+      if (!values.description) {
+        setError(RentConstants.DESCRIPTION, "Description is mandatory field.");
+        return;
+      }
     } else {
       setRentStepper(rentStepper + 1);
     }
