@@ -7,14 +7,10 @@ import Location from "./Location";
 import Info from "./Info";
 import Images from "./Images";
 import Description from "./Description";
+import Price from "./Price";
 
 function RentStepper(props) {
-  const {
-    steps,
-    handleValuesChange,
-    values,
-    errors,
-  } = props;
+  const { steps, handleValuesChange, values, errors } = props;
 
   const handleSwitchSteps = (steps) => {
     switch (steps) {
@@ -47,6 +43,14 @@ function RentStepper(props) {
       case RentStepsConstants.DESCRIPTION:
         return (
           <Description
+            handleValuesChange={handleValuesChange}
+            values={values}
+            errors={errors}
+          />
+        );
+      case RentStepsConstants.PRICE:
+        return (
+          <Price
             handleValuesChange={handleValuesChange}
             values={values}
             errors={errors}

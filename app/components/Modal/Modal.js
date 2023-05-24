@@ -34,7 +34,7 @@ function CustomModal(props) {
       isOpen={isOpen}
       onClose={onClose}
       size={size}
-      onOverlayClick={false}
+      // onOverlayClick={false}
       {...rest}
     >
       <ModalOverlay bg="blackAlpha.500" sx={overlayStyles} />

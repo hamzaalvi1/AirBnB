@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Modal } from "../Modal";
 import { Formik } from "formik";
 import { Button } from "../Button";
@@ -25,6 +25,7 @@ const RentModal = (props) => {
     [RentConstants.DESCRIPTION]: "",
     [RentConstants.BATHROOM_COUNT]: 1,
   };
+
   const handleOnClose = () => {
     setRentStepper(RentStepsConstants.CATEGORY);
     onClose();
@@ -70,8 +71,11 @@ const RentModal = (props) => {
     >
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => {
+        onSubmit={(values, formikProps) => {
+          const { setFieldError, setSubmitting } = formikProps;
           if (rentStepper == RentStepsConstants.PRICE && !values.price) {
+            setSubmitting(false);
+            setFieldError(RentConstants.PRICE, "Please enter a price");
             return;
           }
         }}
@@ -111,7 +115,7 @@ const RentModal = (props) => {
                     title={"Submit"}
                     type={"submit"}
                     variant={"primary"}
-                    loading={false}
+                    loading={isSubmitting}
                   />
                 ) : (
                   <Button
