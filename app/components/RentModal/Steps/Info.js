@@ -1,6 +1,6 @@
 "use client";
 import { Box } from "@chakra-ui/react";
-import { RentHeading } from "./RentContent";
+import { RentHeading } from "../RentContent";
 import { RentConstants } from "@/app/config/constants";
 
 import Counter from "./Counter";

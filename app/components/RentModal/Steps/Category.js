@@ -1,9 +1,9 @@
 "use client";
 import { Box } from "@chakra-ui/react";
-import { RentHeading } from "./RentContent";
+import { RentHeading } from "../RentContent";
 import { categoriesList } from "@/app/components/Categories";
-import { categoriesListStyles } from "./RentModalStyles";
-import { FormikErrorText } from "../FormikErrorText";
+import { categoriesListStyles } from "../RentModalStyles";
+import { FormikErrorText } from "../../FormikErrorText";
 import { RentConstants } from "@/app/config/constants";
 
 import CategoryBox from "./CategoryBox";

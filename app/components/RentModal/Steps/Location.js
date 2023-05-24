@@ -3,12 +3,12 @@
 import dynamic from "next/dynamic";
 
 import { useMemo } from "react";
-import { Select } from "../Select";
+import { Select } from "../../Select";
 import { useCountries } from "@/app/hooks";
-import { RentHeading } from "./RentContent";
+import { RentHeading } from "../RentContent";
 import { Box, Flex } from "@chakra-ui/react";
 import { RentConstants } from "@/app/config/constants";
-import { FormikErrorText } from "../FormikErrorText";
+import { FormikErrorText } from "../../FormikErrorText";
 
 import Flags from "country-flag-icons/react/3x2";
 
@@ -16,7 +16,7 @@ function Location(props) {
   const { handleValuesChange, values, errors } = props;
   const Map = useMemo(
     () =>
-      dynamic(() => import("../Map"), {
+      dynamic(() => import("../../Map"), {
         ssr: false,
       }),
     [values.location]

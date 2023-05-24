@@ -1,7 +1,7 @@
 "use client";
 import { Box } from "@chakra-ui/react";
-import { RentHeading } from "./RentContent";
-import { Input } from "../Input";
+import { RentHeading } from "../RentContent";
+import { Input } from "../../Input";
 import { RentConstants } from "@/app/config/constants";
 import { ImCoinDollar } from "react-icons/im";
 

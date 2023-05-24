@@ -1,7 +1,7 @@
 "use client";
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { counterButton } from "./RentModalStyles";
+import { counterButton } from "../RentModalStyles";
 
 function Counter(props) {
   const { title, subtitle, value, handleValuesChange, propertyCount } = props;

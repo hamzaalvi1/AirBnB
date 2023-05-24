@@ -1,8 +1,8 @@
 "use client";
 import { Box, Flex } from "@chakra-ui/react";
-import { RentHeading } from "./RentContent";
-import { Input } from "../Input";
-import { TextArea } from "../TextArea";
+import { RentHeading } from "../RentContent";
+import { Input } from "../../Input";
+import { TextArea } from "../../TextArea";
 import { RentConstants } from "@/app/config/constants";
 function Description(props) {
   const { values, errors, handleValuesChange } = props;

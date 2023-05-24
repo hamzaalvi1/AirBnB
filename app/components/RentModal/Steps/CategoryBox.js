@@ -1,6 +1,6 @@
 "use client";
 import { Box } from "@chakra-ui/react";
-import { categoryBoxStyles, selectedStyles } from "./RentModalStyles";
+import { categoryBoxStyles, selectedStyles } from "../RentModalStyles";
 import { RentConstants } from "@/app/config/constants";
 
 function CategoryBox(props) {

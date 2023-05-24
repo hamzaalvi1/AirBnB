@@ -1,7 +1,7 @@
 "use client";
 import { Box } from "@chakra-ui/react";
-import { RentHeading } from "./RentContent";
-import { FormikErrorText } from "../FormikErrorText";
+import { RentHeading } from "../RentContent";
+import { FormikErrorText } from "../../FormikErrorText";
 import { RentConstants } from "@/app/config/constants";
 
 import ImageUpload from "./ImageUpload";

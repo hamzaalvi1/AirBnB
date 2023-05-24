@@ -2,7 +2,7 @@
 import { Flex, Box } from "@chakra-ui/react";
 import { TbPhotoPlus } from "react-icons/tb";
 import { CldUploadWidget } from "next-cloudinary";
-import { imageUploadStyles } from "./RentModalStyles";
+import { imageUploadStyles } from "../RentModalStyles";
 import { RentConstants } from "@/app/config/constants";
 import Image from "next/image";
 

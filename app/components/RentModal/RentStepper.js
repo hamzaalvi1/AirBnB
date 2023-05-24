@@ -2,12 +2,12 @@
 import { RentStepsConstants } from "@/app/config/constants";
 
 // Stepper
-import Category from "./Category";
-import Location from "./Location";
-import Info from "./Info";
-import Images from "./Images";
-import Description from "./Description";
-import Price from "./Price";
+import Category from "./Steps/Category";
+import Location from "./Steps/Location";
+import Info from "./Steps/Info";
+import Images from "./Steps/Images";
+import Description from "./Steps/Description";
+import Price from "./Steps/Price";
 
 function RentStepper(props) {
   const { steps, handleValuesChange, values, errors } = props;
