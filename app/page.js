@@ -1,8 +1,8 @@
+// "use client";
+// import { useEffect } from "react";
 
-export default function Home() {
-  return (
-    <div>
-      HELLO WORLD
-    </div>
-  )
+
+export default async function Home() {
+  
+  return <div>HELLO WORLD</div>;
 }

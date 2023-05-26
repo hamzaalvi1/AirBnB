@@ -62,11 +62,7 @@ export const authOptions = {
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
-  callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      return true;
-    },
-  },
+  
 };
 
 const handler = NextAuth(authOptions);
