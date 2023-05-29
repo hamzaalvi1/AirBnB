@@ -5,8 +5,7 @@ import prisma from "@/app/libs/prismadb";
 export async function POST(request) {
   try {
     const currentUser = await getUser();
-    if (!currentUser)
-      return NextResponse.error("Unauthorized resource", { status: 401 });
+    if (!currentUser) return NextResponse.error(401, "Unauthorized resource");
     const data = await request.json();
     const {
       title,
@@ -19,28 +18,31 @@ export async function POST(request) {
       location,
       price,
     } = data;
-    console.log(data, "data");
+
 
     const listing = await prisma.listing.create({
       data: {
-        title: title,
-        description: description,
-        imageSrc: imageSrc,
-        category: category,
-        bathroomCount: bathroomCount,
-        guestCount: guestCount,
-        roomCount: roomCount,
+        title,
+        description,
+        imageSrc,
+        category,
+        roomCount,
+        bathroomCount,
+        guestCount,
         locationValue: location.value,
         price: parseInt(price, 10),
         userId: currentUser.id,
       },
     });
-    return NextResponse.json({
-      status: 201,
-      message: "Successfully created",
-      data: listing,
-    });
+    return NextResponse.json(
+      {
+        message: "Successfully created",
+        data: listing,
+      },
+      { status: 201 }
+    );
   } catch (err) {
-     NextResponse.error("Error", { status: 500 });
+    console.log("err", err);
+    return NextResponse.error(500, "Internal Server Error");
   }
 }

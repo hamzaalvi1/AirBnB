@@ -10,8 +10,7 @@ const RentStepsConstants = {
 export const RentConstants = {
   CATEGORY: "category",
   LOCATION: "location",
-  INFO: "info",
-  IMAGES: "imgSrc",
+  IMAGES: "imageSrc",
   DESCRIPTION: "description",
   PRICE: "price",
   GUEST_COUNT: "guestCount",

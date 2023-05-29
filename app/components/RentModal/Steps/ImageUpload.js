@@ -38,7 +38,7 @@ const ImageUpload = (props) => {
             <Box fontWeight={"bold"} fontSize={"lg"}>
               Click to Upload
             </Box>
-            {values?.imgSrc && (
+            {values?.imageSrc && (
               <Box
                 pos={"absolute"}
                 top={0}
@@ -47,7 +47,7 @@ const ImageUpload = (props) => {
                 height={"100%"}
               >
                 <Image
-                  src={values?.imgSrc}
+                  src={values?.imageSrc}
                   fill
                   alt="imgSrc"
                   style={{ objectFit: "cover" }}

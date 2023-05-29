@@ -15,15 +15,14 @@ const RentModal = (props) => {
   const [rentStepper, setRentStepper] = useState(RentStepsConstants.CATEGORY);
 
   const initialValues = {
-    [RentConstants.INFO]: "",
     [RentConstants.PRICE]: 0,
-    [RentConstants.IMAGES]: "",
-    [RentConstants.TITLE]: "",
+    [RentConstants.IMAGES]: "https://res.cloudinary.com/drsxwp2ou/image/upload/v1684768814/msv0thmmz9znsois1cqd.png",
+    [RentConstants.TITLE]: "HELLO",
     [RentConstants.LOCATION]: null,
     [RentConstants.CATEGORY]: "",
     [RentConstants.ROOM_COUNT]: 1,
     [RentConstants.GUEST_COUNT]: 1,
-    [RentConstants.DESCRIPTION]: "",
+    [RentConstants.DESCRIPTION]: "HEY",
     [RentConstants.BATHROOM_COUNT]: 1,
   };
 
@@ -51,7 +50,7 @@ const RentModal = (props) => {
     } else if (rentStepper == RentStepsConstants.LOCATION && !values.location) {
       setError(RentConstants.LOCATION, "Please select the location.");
       return;
-    } else if (rentStepper == RentStepsConstants.IMAGES && !values.imgSrc) {
+    } else if (rentStepper == RentStepsConstants.IMAGES && !values.imageSrc) {
       setError(RentConstants.IMAGES, "Please select the upload image.");
       return;
     } else if (rentStepper == RentStepsConstants.DESCRIPTION && !values.title) {

@@ -13,13 +13,14 @@ const getAllList = async (params) => {
   };
   try {
     const list = await fetchAPI(apiParams);
-    if (list?.data?.status == 201) {
-      successLogger(list?.data?.message);
-      resetForm();
-    }
+    console.log(list);
+    // if (list?.data?.status == 201) {
+    //   successLogger(list?.data?.message);
+    //   resetForm();
+    // }
   } catch (err) {
     console.log(err);
-    errorLogger(err);
+    // errorLogger(err);
   } finally {
     setSubmitting(false);
   }

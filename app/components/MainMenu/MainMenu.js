@@ -74,7 +74,7 @@ function MainMenu(props) {
             src={data?.user?.image}
             width={30}
             height={30}
-            fetchPriority={false}
+            fetchPriority={"low"}
             alt={"avatar-img"}
           />
         )}
