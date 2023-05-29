@@ -16,13 +16,13 @@ const RentModal = (props) => {
 
   const initialValues = {
     [RentConstants.PRICE]: 0,
-    [RentConstants.IMAGES]: "https://res.cloudinary.com/drsxwp2ou/image/upload/v1684768814/msv0thmmz9znsois1cqd.png",
-    [RentConstants.TITLE]: "HELLO",
+    [RentConstants.IMAGES]: "",
+    [RentConstants.TITLE]: "",
     [RentConstants.LOCATION]: null,
     [RentConstants.CATEGORY]: "",
     [RentConstants.ROOM_COUNT]: 1,
     [RentConstants.GUEST_COUNT]: 1,
-    [RentConstants.DESCRIPTION]: "HEY",
+    [RentConstants.DESCRIPTION]: "",
     [RentConstants.BATHROOM_COUNT]: 1,
   };
 
@@ -40,7 +40,7 @@ const RentModal = (props) => {
 
   const handleAddList = async (values, submitProps) => {
     const { setSubmitting, resetForm } = submitProps;
-     getAllList({ values, setSubmitting, resetForm });
+     getAllList({ values, setSubmitting, resetForm,onClose });
   };
 
   const handleNextStep = (values, setError) => {

@@ -4,8 +4,8 @@ import { ApiMethodsConstants } from "../config/constants";
 import { successLogger, errorLogger } from "../components/Toaster";
 
 const getAllList = async (params) => {
-  const { values, setSubmitting, resetForm } = params;
-  
+  const { values, setSubmitting, resetForm, onClose } = params;
+
   const apiParams = {
     url: ListingRoutes.ADD_LISTINGS,
     method: ApiMethodsConstants.POST,
@@ -13,14 +13,14 @@ const getAllList = async (params) => {
   };
   try {
     const list = await fetchAPI(apiParams);
-    console.log(list);
-    // if (list?.data?.status == 201) {
-    //   successLogger(list?.data?.message);
-    //   resetForm();
-    // }
+    if (list?.status == 201) {
+      successLogger(list?.data?.message);
+      resetForm();
+      onClose();
+    }
   } catch (err) {
     console.log(err);
-    // errorLogger(err);
+    errorLogger(err?.message);
   } finally {
     setSubmitting(false);
   }

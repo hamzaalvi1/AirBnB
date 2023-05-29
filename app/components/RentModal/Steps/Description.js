@@ -31,7 +31,7 @@ function Description(props) {
           placeholder="Description"
           resize="none"
           minHeight="150px"
-          values={values.description}
+          value={values.description}
           type="text"
           isInvalid={errors.description}
           error={errors.description}
