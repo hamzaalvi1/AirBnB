@@ -1,10 +1,46 @@
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "../auth/[...nextauth]/route";
+import getUser from "@/app/actions/getUser";
+import prisma from "@/app/libs/prismadb";
 
 export async function POST(request) {
-  const session = await getServerSession(authOptions);
-  console.log(session,"session")
+  try {
+    const currentUser = await getUser();
+    if (!currentUser)
+      return NextResponse.error("Unauthorized resource", { status: 401 });
+    const data = await request.json();
+    const {
+      title,
+      description,
+      imageSrc,
+      category,
+      roomCount,
+      bathroomCount,
+      guestCount,
+      location,
+      price,
+    } = data;
+    console.log(data, "data");
 
-  return NextResponse.json({ status: 200, data: { user: session } });
+    const listing = await prisma.listing.create({
+      data: {
+        title: title,
+        description: description,
+        imageSrc: imageSrc,
+        category: category,
+        bathroomCount: bathroomCount,
+        guestCount: guestCount,
+        roomCount: roomCount,
+        locationValue: location.value,
+        price: parseInt(price, 10),
+        userId: currentUser.id,
+      },
+    });
+    return NextResponse.json({
+      status: 201,
+      message: "Successfully created",
+      data: listing,
+    });
+  } catch (err) {
+     NextResponse.error("Error", { status: 500 });
+  }
 }

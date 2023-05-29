@@ -1,9 +1,10 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { Modal } from "../Modal";
 import { Formik } from "formik";
 import { Button } from "../Button";
 import { Box } from "@chakra-ui/react";
+import { getAllList } from "@/app/actions";
 import { stepperButtons } from "./RentModalStyles";
 import { RentStepsConstants, RentConstants } from "@/app/config/constants";
 
@@ -36,6 +37,11 @@ const RentModal = (props) => {
       return;
     }
     setRentStepper(rentStepper - 1);
+  };
+
+  const handleAddList = async (values, submitProps) => {
+    const { setSubmitting, resetForm } = submitProps;
+     getAllList({ values, setSubmitting, resetForm });
   };
 
   const handleNextStep = (values, setError) => {
@@ -72,12 +78,13 @@ const RentModal = (props) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values, formikProps) => {
-          const { setFieldError, setSubmitting } = formikProps;
+          const { setFieldError, setSubmitting, resetForm } = formikProps;
           if (rentStepper == RentStepsConstants.PRICE && !values.price) {
             setSubmitting(false);
             setFieldError(RentConstants.PRICE, "Please enter a price");
             return;
           }
+          handleAddList(values, { resetForm, setSubmitting });
         }}
       >
         {(formikProps) => {
