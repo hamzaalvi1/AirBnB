@@ -50,3 +50,10 @@ html {
     height: 350px;
     margin: 20px 0 0;
 }
+
+
+.main-wrapper {
+    margin-top: 195px;
+    height: calc(100vh - 195px);
+    
+}

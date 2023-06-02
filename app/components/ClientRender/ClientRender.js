@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Spinner } from "@chakra-ui/react";
+import { Spinner, Box } from "@chakra-ui/react";
 function ClientRender({ children }) {
   const [isMount, setIsMount] = useState(true);
   useEffect(() => {
@@ -10,13 +10,22 @@ function ClientRender({ children }) {
   return (
     <>
       {isMount ? (
-        <Spinner
-          thickness="4px"
-          speed="0.65s"
-          emptyColor="gray.200"
-          color="primaryColor"
-          size="xl"
-        />
+        <Box
+          pos={"relative"}
+          width={"100%"}
+          h={"100vh"}
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+        >
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="primaryColor"
+            size="xl"
+          />
+        </Box>
       ) : (
         children
       )}

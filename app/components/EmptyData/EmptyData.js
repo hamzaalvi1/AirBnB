@@ -1,27 +1,33 @@
 "use client";
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Flex, Heading, Text } from "@chakra-ui/react";
 import { Button } from "../Button";
 import { useRouter } from "next/navigation";
 function EmptyData(props) {
   const {
-    heading ="No Data Yet!",
-    paragraph = "Please reset your filters",
+    heading = "No Data Yet!",
+    paragraph = "Please reset your filters or refresh your page",
     showReset,
     resetHandler,
-    buttonTitle = "reset",
+    buttonTitle = "Reset",
   } = props;
   const router = useRouter();
   return (
-    <Box>
+    <Flex
+      align={"center"}
+      justify={"center"}
+      width={"100%"}
+      height={"100%"}
+      flexFlow={"column"}
+    >
       <Heading
         variant={"primary"}
-        fontSize={"lg"}
-        my={"5px"}
+        fontSize={"2xl"}
+        mb={"5px"}
         fontWeight={"bold"}
       >
         {heading}
       </Heading>
-      <Text fontSize={13} as={"p"} my={"10px"} textStyle="secondary">
+      <Text fontSize={"md"} as={"p"} mb={"5px"} textStyle="secondary">
         {paragraph}
       </Text>
       {showReset && (
@@ -30,10 +36,13 @@ function EmptyData(props) {
           title={buttonTitle}
           type="button"
           variant={"secondary"}
+          margin={"5px 0"}
+          width={"200px"}
+          display="inline-block"
           handleClick={resetHandler ? resetHandler : () => router.push("/")}
         />
       )}
-    </Box>
+    </Flex>
   );
 }
 
