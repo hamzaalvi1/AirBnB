@@ -1,8 +1,10 @@
-// "use client";
-// import { useEffect } from "react";
 
+import getListing from "./actions/getListing";
+import { ClientRender } from "./components/ClientRender";
+import { EmptyData } from "./components/EmptyData";
 
 export default async function Home() {
-  
-  return <div>HELLO WORLD</div>;
+  const listings = await getListing();
+
+  return <ClientRender> <EmptyData/> </ClientRender>;
 }

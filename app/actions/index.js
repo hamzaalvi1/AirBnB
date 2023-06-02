@@ -1,5 +1,5 @@
 import registerUser from "./registerUser";
 import loginUserWithCredentials from "./loginUser";
-import getAllList from "./getListing";
+import addList from "./addListing";
 
-export { registerUser, loginUserWithCredentials, getAllList };
+export { registerUser, loginUserWithCredentials, addList };

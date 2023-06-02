@@ -4,7 +4,7 @@ import { Modal } from "../Modal";
 import { Formik } from "formik";
 import { Button } from "../Button";
 import { Box } from "@chakra-ui/react";
-import { getAllList } from "@/app/actions";
+import { addList } from "@/app/actions";
 import { stepperButtons } from "./RentModalStyles";
 import { RentStepsConstants, RentConstants } from "@/app/config/constants";
 
@@ -40,7 +40,7 @@ const RentModal = (props) => {
 
   const handleAddList = async (values, submitProps) => {
     const { setSubmitting, resetForm } = submitProps;
-     getAllList({ values, setSubmitting, resetForm,onClose });
+    addList({ values, setSubmitting, resetForm,onClose });
   };
 
   const handleNextStep = (values, setError) => {

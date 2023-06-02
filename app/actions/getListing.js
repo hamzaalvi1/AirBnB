@@ -1,29 +1,23 @@
-import { fetchAPI } from "../utils";
-import { ListingRoutes } from "../config/api-routes";
-import { ApiMethodsConstants } from "../config/constants";
-import { successLogger, errorLogger } from "../components/Toaster";
+import { errorLogger } from "../components/Toaster";
+import prisma from "@/app/libs/prismadb";
 
-const getAllList = async (params) => {
-  const { values, setSubmitting, resetForm, onClose } = params;
-
-  const apiParams = {
-    url: ListingRoutes.ADD_LISTINGS,
-    method: ApiMethodsConstants.POST,
-    data: values,
-  };
+const getListing = async (params) => {
   try {
-    const list = await fetchAPI(apiParams);
-    if (list?.status == 201) {
-      successLogger(list?.data?.message);
-      resetForm();
-      onClose();
-    }
+    const listings = await prisma.listing.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    const safeListings = listings.map((listing) => ({
+      ...listing,
+      createdAt: listing.createdAt.toISOString(),
+    }));
+
+    return safeListings;
   } catch (err) {
     console.log(err);
-    errorLogger(err?.message);
-  } finally {
-    setSubmitting(false);
+    errorLogger.error(500, "something went wrong");
   }
 };
 
-export default getAllList;
+export default getListing;
