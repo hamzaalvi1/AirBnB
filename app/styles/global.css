@@ -55,5 +55,13 @@ html {
 .main-wrapper {
     margin-top: 195px;
     height: calc(100vh - 195px);
-    
+
+}
+
+.list-img {
+    transition: 0.25s;
+}
+
+.list-img:hover {
+    scale: 1.15;
 }

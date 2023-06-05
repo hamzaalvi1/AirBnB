@@ -1,7 +1,7 @@
 "use client";
 
 import CategoriesItem from "./CategoriesItem";
-import { Box } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import { categoriesStyles } from "./styles";
 import { TbBeach, TbMountain, TbPool } from "react-icons/tb";
 import {
@@ -86,16 +86,18 @@ export const categoriesList = [
 const Categories = () => {
   const params = useSearchParams();
   return (
-    <Box as={"div"} sx={categoriesStyles}>
-      {categoriesList.map(({ label, icon }) => (
-        <CategoriesItem
-          key={label}
-          icon={icon}
-          label={label}
-          selected={params.get("category") == label}
-        />
-      ))}
-    </Box>
+    <Container maxW={"container.2xl"}>
+      <Box as={"div"} sx={categoriesStyles}>
+        {categoriesList.map(({ label, icon }) => (
+          <CategoriesItem
+            key={label}
+            icon={icon}
+            label={label}
+            selected={params.get("category") == label}
+          />
+        ))}
+      </Box>
+    </Container>
   );
 };
 

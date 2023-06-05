@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <ClientRender>
       <div className={"main-wrapper"}>
-        {[].length > 0 ? (
+        {listings.length > 0 ? (
           <PlaceListing listings={listings} />
         ) : (
           <EmptyData showReset={true} />
