@@ -1,11 +1,18 @@
-export const placeItemsStyles = {
+export const placeItemsImageStyles = {
   overflow: "hidden",
   borderRadius: "15px",
   position: "relative",
-  width: "320px",
-  maxHeight: "320px",
+  width: "100%",
+  maxHeight: "100%",
   overflow: "hidden",
-  margin: "auto",
   height: "320px",
   cursor: "pointer",
 };
+
+export const placeItemsStyles = {
+  position: "relative",
+  width: "320px",
+  minHeight: "320px",
+  margin: "auto",
+  cursor: "pointer",
+}

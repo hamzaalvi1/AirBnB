@@ -1,5 +1,7 @@
 .favorite-icon {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    right: 15px;
+    fill: #ffff;
+    paint-order: stroke
 }

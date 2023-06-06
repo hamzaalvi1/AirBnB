@@ -7,7 +7,7 @@ function PlaceListing(props) {
   return (
     <Container maxW={"container.2xl"}>
       {" "}
-      <Grid as="div" templateColumns="repeat(4, 1fr)" gap={1}>
+      <Grid as="div" templateColumns="repeat(5, 1fr)" gap={5}>
         {listings.map((list) => {
           return <PlaceItems listItem={list} key={list.id} />;
         })}
