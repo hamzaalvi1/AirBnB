@@ -21,7 +21,7 @@ function PlaceItems(props) {
             className="list-img"
             fetchPriority={"low"}
           />
-          <Favorite favoriteId = {listItem?.id}/>
+          <Favorite favoriteId = {listItem?.id} currentUser={currentUser}/>
         </Box>
         <Flex flexFlow={"column"} as="div" margin={"5px 5px 0"}>
           <Flex as="div" align={"baseline"}>
