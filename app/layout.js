@@ -1,7 +1,6 @@
 import { Providers } from "@/app/components/Providers";
 import { Header } from "@/app/components/Header";
 import { nunito } from "@/app/components/Fonts";
-import getUser from "./actions/getUser";
 import "@/app/styles/global.css";
 
 export const metadata = {
@@ -10,7 +9,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const user = await getUser();
   return (
     <html lang="en">
       <body className={nunito.className}>

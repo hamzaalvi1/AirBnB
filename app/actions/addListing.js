@@ -4,7 +4,7 @@ import { ApiMethodsConstants } from "../config/constants";
 import { successLogger, errorLogger } from "../components/Toaster";
 
 const addList = async (params) => {
-  const { values, setSubmitting, resetForm, onClose } = params;
+  const { values, setSubmitting, resetForm, onClose, router } = params;
 
   const apiParams = {
     url: ListingRoutes.ADD_LISTINGS,
@@ -17,6 +17,7 @@ const addList = async (params) => {
       successLogger(list?.data?.message);
       resetForm();
       onClose();
+      router.refresh();
     }
   } catch (err) {
     console.log(err);

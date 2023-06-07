@@ -6,12 +6,14 @@ import { Button } from "../Button";
 import { Box } from "@chakra-ui/react";
 import { addList } from "@/app/actions";
 import { stepperButtons } from "./RentModalStyles";
+import { useRouter } from "next/navigation";
 import { RentStepsConstants, RentConstants } from "@/app/config/constants";
 
 import RentStepper from "./RentStepper";
 
 const RentModal = (props) => {
   const { isOpen, onClose, title } = props;
+  const router = useRouter();
   const [rentStepper, setRentStepper] = useState(RentStepsConstants.CATEGORY);
 
   const initialValues = {
@@ -40,7 +42,7 @@ const RentModal = (props) => {
 
   const handleAddList = async (values, submitProps) => {
     const { setSubmitting, resetForm } = submitProps;
-    addList({ values, setSubmitting, resetForm,onClose });
+    addList({ values, setSubmitting, resetForm, onClose, router });
   };
 
   const handleNextStep = (values, setError) => {

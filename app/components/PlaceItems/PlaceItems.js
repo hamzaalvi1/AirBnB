@@ -6,7 +6,7 @@ import { Favorite } from "../Favorite";
 import Image from "next/image";
 
 function PlaceItems(props) {
-  const { listItem } = props;
+  const { listItem,currentUser } = props;
   const { getCountryByValue } = useCountries();
   const location = getCountryByValue(listItem?.locationValue);
   return (
@@ -17,9 +17,11 @@ function PlaceItems(props) {
             src={listItem?.imageSrc}
             alt={listItem?.id}
             fill
+            sizes="(max-width: 768px) 100vw"
             className="list-img"
+            fetchPriority={"low"}
           />
-          <Favorite />
+          <Favorite favoriteId = {listItem?.id}/>
         </Box>
         <Flex flexFlow={"column"} as="div" margin={"5px 5px 0"}>
           <Flex as="div" align={"baseline"}>
@@ -37,14 +39,22 @@ function PlaceItems(props) {
               {location?.region}
             </Text>
           </Flex>
-          <Flex as="div" align={"baseline"}>
+          <Flex as="div" align={"baseline"} flexFlow={"column"}>
             <Text
               as="span"
               fontWeight={"bold"}
-              fontSize={"md"}
+              fontSize={"14px"}
               color={"gray.500"}
             >
               {listItem?.category}
+            </Text>
+            <Text
+              as="span"
+              fontWeight={"bold"}
+              fontSize={"14px"}
+              color={"gray.700"}
+            >
+              $ {listItem?.price} day
             </Text>
           </Flex>
         </Flex>
