@@ -4,5 +4,6 @@ export const HeaderStyles = {
   width: "100%",
   left: "0",
   background: "white",
+  zIndex:2
 
 };
