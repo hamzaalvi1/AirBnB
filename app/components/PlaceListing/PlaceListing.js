@@ -2,6 +2,7 @@
 import { Grid, Container } from "@chakra-ui/react";
 import { PlaceItems } from "../PlaceItems";
 
+// export const dynamic = "force-dynamic";
 function PlaceListing(props) {
   const { listings, currentUser } = props;
 
