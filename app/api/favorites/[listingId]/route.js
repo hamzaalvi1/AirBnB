@@ -25,10 +25,9 @@ export const POST = async (req, { params }) => {
     });
     return NextResponse.json(
       {
-        message: "Successfully added",
-        data: user,
+        ...user,
       },
-      { status: 200 }
+      { status: 200, statusText: "Successfully Added" }
     );
   } catch (err) {
     console.log("err", err);
@@ -40,7 +39,7 @@ export const DELETE = async (req, { params }) => {
   try {
     const currentUser = await getUser();
     if (!currentUser) {
-      return NextResponse.error(500, "Unauthorized Resource");
+      return NextResponse.error(401, "Unauthorized Resource");
     }
     const { listingId } = params;
     if (!listingId || typeof listingId !== "string") {
@@ -59,10 +58,9 @@ export const DELETE = async (req, { params }) => {
     });
     return NextResponse.json(
       {
-        message: "Successfully created",
-        data: user,
+        ...user,
       },
-      { status: 201 }
+      { status: 200, statusText: "Remove Successfully" }
     );
   } catch (err) {
     console.log("err", err);

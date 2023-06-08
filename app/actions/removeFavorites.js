@@ -3,8 +3,7 @@ import { FavoriteRoutes } from "../config/api-routes";
 import { ApiMethodsConstants } from "../config/constants";
 import { successLogger, errorLogger } from "../components/Toaster";
 
-
-const addFavorites = async ({ listingId, currentUser, }) => {
+const removeFavorites = async ({ listingId, currentUser }) => {
   try {
     if (!currentUser) {
       errorLogger("please login to add favorites");
@@ -12,7 +11,7 @@ const addFavorites = async ({ listingId, currentUser, }) => {
     }
     const apiParams = {
       url: `${FavoriteRoutes.ADD_FAVORITE}/${listingId}`,
-      method: ApiMethodsConstants.POST,
+      method: ApiMethodsConstants.DELETE,
       data: { listingId },
     };
     const favorite = await fetchAPI(apiParams);
@@ -25,4 +24,4 @@ const addFavorites = async ({ listingId, currentUser, }) => {
   }
 };
 
-export default addFavorites;
+export default removeFavorites;
