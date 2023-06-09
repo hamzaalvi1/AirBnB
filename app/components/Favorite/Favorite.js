@@ -20,7 +20,8 @@ function Favorite(props) {
     }
   }, []);
 
-  const handleAddDeleteFavorite = async (type) => {
+  const handleAddDeleteFavorite = async (e, type) => {
+    e.stopPropagation();
     const response = await addFavorites({
       listingId: favoriteId,
       currentUser,
@@ -33,13 +34,13 @@ function Favorite(props) {
     <BsHeartFill
       size={22}
       className={`${styles["favorite-icon"]} ${styles["favorite-filled-icon"]}`}
-      onClick={() => handleAddDeleteFavorite(ApiMethodsConstants.DELETE)}
+      onClick={(e) => handleAddDeleteFavorite(e, ApiMethodsConstants.DELETE)}
     />
   ) : (
     <BsHeart
       size={22}
       className={styles["favorite-icon"]}
-      onClick={() => handleAddDeleteFavorite(ApiMethodsConstants.POST)}
+      onClick={(e) => handleAddDeleteFavorite(e, ApiMethodsConstants.POST)}
     />
   );
 }

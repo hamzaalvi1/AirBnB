@@ -16,7 +16,7 @@ const getListing = async (params) => {
     return safeListings;
   } catch (err) {
     console.log(err);
-    errorLogger.error(500, "something went wrong");
+    errorLogger(500, "something went wrong");
   }
 };
 

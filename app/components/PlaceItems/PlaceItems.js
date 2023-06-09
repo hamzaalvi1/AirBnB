@@ -3,14 +3,20 @@ import { GridItem, Box, Flex, Text } from "@chakra-ui/react";
 import { placeItemsImageStyles, placeItemsStyles } from "./styles";
 import { useCountries } from "@/app/hooks";
 import { Favorite } from "../Favorite";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 function PlaceItems(props) {
-  const { listItem,currentUser } = props;
+  const { listItem, currentUser } = props;
+  const router = useRouter();
   const { getCountryByValue } = useCountries();
   const location = getCountryByValue(listItem?.locationValue);
+
+  const handleListItemClick = () => {
+    router.push(`/listing/${listItem?.id}`);
+  };
   return (
-    <GridItem w="100%" as={"div"} pos="relative">
+    <GridItem w="100%" as={"div"} pos="relative" onClick={handleListItemClick}>
       <Box as="div" sx={placeItemsStyles}>
         <Box as="div" sx={placeItemsImageStyles}>
           <Image
@@ -21,7 +27,7 @@ function PlaceItems(props) {
             className="list-img"
             fetchPriority={"low"}
           />
-          <Favorite favoriteId = {listItem?.id} currentUser={currentUser}/>
+          <Favorite favoriteId={listItem?.id} currentUser={currentUser} />
         </Box>
         <Flex flexFlow={"column"} as="div" margin={"5px 5px 0"}>
           <Flex as="div" align={"baseline"}>
