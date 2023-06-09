@@ -4,7 +4,6 @@ import { ApiMethodsConstants } from "../config/constants";
 import { successLogger, errorLogger } from "../components/Toaster";
 
 const addFavorites = async ({ listingId, currentUser, type, refresh }) => {
-  console.log(type, "type");
   try {
     if (!currentUser) {
       errorLogger("please login to add favorites");
