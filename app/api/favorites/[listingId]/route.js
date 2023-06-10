@@ -56,6 +56,7 @@ export const DELETE = async (req, { params }) => {
         favoriteIds,
       },
     });
+    delete user?.hashedPassword
     return NextResponse.json(
       {
         ...user,
