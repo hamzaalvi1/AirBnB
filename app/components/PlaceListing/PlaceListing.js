@@ -5,7 +5,6 @@ import { PlaceItems } from "../PlaceItems";
 // export const dynamic = "force-dynamic";
 function PlaceListing(props) {
   const { listings, currentUser } = props;
-
   return (
     <Container maxW={"container.2xl"}>
       {" "}
