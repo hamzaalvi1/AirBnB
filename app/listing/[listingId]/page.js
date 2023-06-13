@@ -1,12 +1,17 @@
-"use client";
-import { Box,Container } from "@chakra-ui/react";
-function ListingPage(props) {
+import getListingById from "@/app/actions/getListingById";
+import getUser from "@/app/actions/getUser";
+
+import { ClientRender } from "@/app/components/ClientRender";
+import { PlaceDetails } from "@/app/components/PlaceDetails";
+
+async function ListingPage(props) {
+  const { params } = props;
+  const listDetails = await getListingById(params.listingId);
+  const currentUser = await getUser();
   return (
-      <Box as="div" className="main-wrapper">
-        <Container maxW={"container.2xl"}>
-        HELLO WORLD {props.params.listingId}
-        </Container>
-      </Box>
+    <ClientRender>
+      <PlaceDetails listDetails={listDetails} user={currentUser} />
+    </ClientRender>
   );
 }
 
