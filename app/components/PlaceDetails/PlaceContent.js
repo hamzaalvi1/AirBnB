@@ -1,7 +1,6 @@
 "use client";
 import { Heading, Text } from "@chakra-ui/react";
 import { useCountries } from "@/app/hooks";
-
 export const PlaceContent = (props) => {
   const { heading, paragraph } = props;
   const { getCountryByValue } = useCountries();
@@ -12,12 +11,12 @@ export const PlaceContent = (props) => {
       <Heading
         variant={"primary"}
         fontSize={"2xl"}
-        my={"2px"}
+        my={"3px"}
         fontWeight={"bold"}
       >
         {heading}
       </Heading>
-      <Text as="span" fontWeight={"bold"} fontSize={"sm"} color={"gray.500"}>
+      <Text as="span" my={"4px"} fontWeight={"bold"} fontSize={"sm"} color={"gray.500"}>
         {countryDetails?.label} {countryDetails?.region}
       </Text>
     </>
