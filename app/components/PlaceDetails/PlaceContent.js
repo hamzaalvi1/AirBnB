@@ -17,7 +17,7 @@ export const PlaceContent = (props) => {
         {heading}
       </Heading>
       <Text as="span" my={"4px"} fontWeight={"bold"} fontSize={"sm"} color={"gray.500"}>
-        {countryDetails?.label} {countryDetails?.region}
+        {countryDetails?.label}, {countryDetails?.region}
       </Text>
     </>
   );

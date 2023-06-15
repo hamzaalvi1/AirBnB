@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Container,Grid,GridItem } from "@chakra-ui/react";
 import { PlaceContent } from "./PlaceContent";
+import { PlaceInfo } from "./PlaceInfo";
 import { Favorite } from "../Favorite";
 import { placeItemsImageStyles } from "./styles";
 function PlaceDetails(props) {
@@ -19,7 +20,7 @@ function PlaceDetails(props) {
             src={listDetails?.imageSrc}
             alt={listDetails?.id}
             fetchPriority={"low"}
-            style={{ objecFit: "fill" }}
+            style={{ objectFit: "fill" }}
             fill
             // width={0}
             // height={0}
@@ -28,6 +29,9 @@ function PlaceDetails(props) {
           />
           <Favorite favoriteId={listDetails?.id} currentUser={user} />
         </Box>
+        <Grid templateColumns='repeat(2, 1fr)' gap={5}>
+        <PlaceInfo listDetails={listDetails} />
+        </Grid>
       </Container>
     </Box>
   );
