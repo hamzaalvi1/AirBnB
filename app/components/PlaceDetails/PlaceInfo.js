@@ -2,10 +2,17 @@
 import { Box, Heading, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
-
+import { categoriesList } from "../Categories";
 export const PlaceInfo = (props) => {
   const { listDetails } = props;
   console.log(listDetails);
+  const {
+    label,
+    icon: Icon,
+    description,
+  } = categoriesList.find(
+    (category) => category.label == listDetails?.category
+  );
   return (
     <Flex as={"div"} my={"15px"} flexFlow={"column"}>
       <Flex as={"div"} columnGap={"5px"} alignItems={"center"}>
@@ -43,7 +50,39 @@ export const PlaceInfo = (props) => {
         {listDetails?.bathroomCount} bathrooms
       </Text>
       <hr />
-      <Text>HELLO WORLD</Text>
+      <Flex as="div" my="20px" alignItems={"center"} gap={"15px"}>
+        <Icon size={36} />
+        <Box as="span">
+          <Heading
+            margin={0}
+            variant={"primary"}
+            fontSize={"lg"}
+            fontWeight={"bold"}
+            textTransform={"capitalize"}
+          >
+            {label}
+          </Heading>
+          <Text
+            as="span"
+            fontWeight={"medium"}
+            fontSize={"sm"}
+            color={"gray.500"}
+          >
+            {description}
+          </Text>
+        </Box>
+      </Flex>
+      <hr />
+      <Text
+        as="span"
+        my={"10px"}
+        fontWeight={"medium"}
+        fontSize={"sm"}
+        color={"gray.500"}
+      >
+        {listDetails?.description}
+      </Text>
+      <hr />
     </Flex>
   );
 };

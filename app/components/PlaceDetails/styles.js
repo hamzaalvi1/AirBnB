@@ -4,7 +4,7 @@ export const placeItemsImageStyles = {
   position: "relative",
   maxHeight: "100%",
   overflow: "hidden",
-  height: "65vh",
+  height: "75vh",
   cursor: "pointer",
   marginTop: "10px",
 };

@@ -1,19 +1,29 @@
 "use client";
 import Image from "next/image";
-import { Box, Container,Grid,GridItem } from "@chakra-ui/react";
-import { PlaceContent } from "./PlaceContent";
-import { PlaceInfo } from "./PlaceInfo";
+import dynamic from "next/dynamic";
 import { Favorite } from "../Favorite";
+import { PlaceInfo } from "./PlaceInfo";
+import { useCountries } from "@/app/hooks";
+import { PlaceContent } from "./PlaceContent";
+import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
 import { placeItemsImageStyles } from "./styles";
+
 function PlaceDetails(props) {
   const { listDetails, user } = props;
-  console.log(listDetails);
+  const { getCountryByValue } = useCountries();
+  const countryDetails = getCountryByValue(listDetails?.locationValue);
+  const Map = dynamic(() => import("../Map"), {
+    ssr: false,
+  });
   return (
     <Box as="div" className="main-wrapper">
       <Container maxW={"90%"}>
         <PlaceContent
           heading={listDetails?.title}
-          paragraph={listDetails?.locationValue}
+          paragraph={{
+            region: countryDetails?.region,
+            label: countryDetails?.label,
+          }}
         />
         <Box as="div" sx={placeItemsImageStyles}>
           <Image
@@ -29,8 +39,11 @@ function PlaceDetails(props) {
           />
           <Favorite favoriteId={listDetails?.id} currentUser={user} />
         </Box>
-        <Grid templateColumns='repeat(2, 1fr)' gap={5}>
-        <PlaceInfo listDetails={listDetails} />
+        <Grid templateColumns="repeat(2, 1fr)" gap={5}>
+          <GridItem>
+            <PlaceInfo listDetails={listDetails} />
+            <Map coords={countryDetails?.latlng} />
+          </GridItem>{" "}
         </Grid>
       </Container>
     </Box>
