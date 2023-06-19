@@ -1,14 +1,20 @@
 "use client";
-import { Grid, Container } from "@chakra-ui/react";
+import { Grid, Container, useMediaQuery } from "@chakra-ui/react";
 import { PlaceItems } from "../PlaceItems";
 
 // export const dynamic = "force-dynamic";
 function PlaceListing(props) {
   const { listings, currentUser } = props;
+  const [isSmallThan1600] = useMediaQuery("(max-width: 1600px)");
   return (
     <Container maxW={"container.2xl"}>
       {" "}
-      <Grid as="div" templateColumns="repeat(4, 1fr)" gap={-2} rowGap={5}>
+      <Grid
+        as="div"
+        templateColumns={`repeat(${isSmallThan1600 ? 4 : 5}, 1fr)`}
+        gap={-2}
+        rowGap={5}
+      >
         {listings.map((list) => {
           return (
             <PlaceItems

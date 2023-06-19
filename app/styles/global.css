@@ -64,3 +64,11 @@ html {
 .list-img:hover {
     scale: 1.15;
 }
+
+.loading-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 196px);
+}

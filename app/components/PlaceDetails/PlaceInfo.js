@@ -30,7 +30,7 @@ export const PlaceInfo = (props) => {
           ) : (
             <Image
               style={{ borderRadius: "50%" }}
-              src={data?.user?.image}
+              src={listDetails?.user?.image}
               width={30}
               height={30}
               fetchPriority={"low"}

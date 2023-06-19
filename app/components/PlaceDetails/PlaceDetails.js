@@ -5,6 +5,7 @@ import { Favorite } from "../Favorite";
 import { PlaceInfo } from "./PlaceInfo";
 import { useCountries } from "@/app/hooks";
 import { PlaceContent } from "./PlaceContent";
+import { PlaceReservations } from "./PlaceReservations";
 import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
 import { placeItemsImageStyles } from "./styles";
 
@@ -43,7 +44,10 @@ function PlaceDetails(props) {
           <GridItem>
             <PlaceInfo listDetails={listDetails} />
             <Map coords={countryDetails?.latlng} />
-          </GridItem>{" "}
+          </GridItem>
+          <GridItem>
+            <PlaceReservations listDetails={listDetails} currentUser={user} />
+          </GridItem>
         </Grid>
       </Container>
     </Box>
