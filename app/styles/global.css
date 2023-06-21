@@ -72,3 +72,14 @@ html {
     align-items: center;
     height: calc(100vh - 196px);
 }
+
+.rdrMonth {
+    width: 90% !important;
+    margin: auto !important;
+    font-weight: 500;
+}
+
+.rdrCalendarWrapper {
+    font-size: 14px !important;
+    width: 100% !important;
+}

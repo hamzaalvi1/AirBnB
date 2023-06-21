@@ -5,7 +5,6 @@ import { FaUserCircle } from "react-icons/fa";
 import { categoriesList } from "../Categories";
 export const PlaceInfo = (props) => {
   const { listDetails } = props;
-  console.log(listDetails);
   const {
     label,
     icon: Icon,

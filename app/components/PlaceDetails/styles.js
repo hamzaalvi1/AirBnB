@@ -8,3 +8,11 @@ export const placeItemsImageStyles = {
   cursor: "pointer",
   marginTop: "10px",
 };
+
+export const placeReservationBooking = {
+  padding: "0 15px",
+  borderRadius: "5px",
+  border: "1px solid #dddddd",
+  backgroundColor: "#fff",
+  marginTop:"15px"
+};
