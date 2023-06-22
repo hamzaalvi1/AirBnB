@@ -40,7 +40,7 @@ function PlaceDetails(props) {
           />
           <Favorite favoriteId={listDetails?.id} currentUser={user} />
         </Box>
-        <Grid templateColumns="60% 40%" gap={5}>
+        <Grid templateColumns="57% 40%" gap={"50px"}>
           <GridItem>
             <PlaceInfo listDetails={listDetails} />
             <Map coords={countryDetails?.latlng} />

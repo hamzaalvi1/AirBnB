@@ -17,6 +17,8 @@ function Calender(props) {
       direction="vertical"
       showDateDisplay={false}
       rangeColors={["#262626"]}
+      className="airbnb-calender"
+      
     />
   );
 }

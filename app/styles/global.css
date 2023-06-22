@@ -74,12 +74,15 @@ html {
 }
 
 .rdrMonth {
-    width: 90% !important;
+    width: 95% !important;
     margin: auto !important;
     font-weight: 500;
 }
 
 .rdrCalendarWrapper {
-    font-size: 14px !important;
-    width: 100% !important;
+    font-size: 15px !important;
+    width: 95% !important;
 }
+/* .airbnb-calender{
+    background: #ff385c;
+} */
