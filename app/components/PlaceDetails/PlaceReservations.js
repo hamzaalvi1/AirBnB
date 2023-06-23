@@ -1,11 +1,8 @@
 "use client";
 import { useMemo, useState, useEffect } from "react";
 import { InitialDateRange } from "@/app/config/constants";
-import {
-  differenceInCalendarDays,
-  differenceInDays,
-  eachDayOfInterval,
-} from "date-fns";
+import { addReservations } from "@/app/actions";
+import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useAuthModal } from "@/app/hooks";
 import { AuthConstants } from "@/app/config/constants";
 import { Calender } from "../Calender";
@@ -44,12 +41,18 @@ export function PlaceReservations(props) {
       }
     }
   }, [dateRange, listDetails?.price]);
-  const onReservationCreated = () => {
+  const onReservationCreated = async () => {
     if (!currentUser) {
       onOpen({ title: AuthConstants.LOGIN });
       return;
     }
-    console.log("called function")
+    console.log("called function");
+    const result = await addReservations({
+      totalPrice,
+      startDate: dateRange?.startDate,
+      endDate: dateRange?.endDate,
+      listingId: listDetails?.id,
+    });
     //reservation api called
   };
 
