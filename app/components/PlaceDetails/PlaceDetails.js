@@ -10,7 +10,7 @@ import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
 import { placeItemsImageStyles } from "./styles";
 
 function PlaceDetails(props) {
-  const { listDetails, user } = props;
+  const { listDetails, user, reservations = [] } = props;
   const { getCountryByValue } = useCountries();
   const countryDetails = getCountryByValue(listDetails?.locationValue);
   const Map = dynamic(() => import("../Map"), {
@@ -46,7 +46,11 @@ function PlaceDetails(props) {
             <Map coords={countryDetails?.latlng} />
           </GridItem>
           <GridItem>
-            <PlaceReservations listDetails={listDetails} currentUser={user} />
+            <PlaceReservations
+              listDetails={listDetails}
+              currentUser={user}
+              reservations={reservations}
+            />
           </GridItem>
         </Grid>
       </Container>

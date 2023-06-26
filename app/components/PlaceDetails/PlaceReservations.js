@@ -9,10 +9,13 @@ import { Calender } from "../Calender";
 import { Box, Text } from "@chakra-ui/react";
 import { placeReservationBooking } from "./styles";
 import { Button } from "../Button";
+import { useRouter } from "next/navigation";
 
 export function PlaceReservations(props) {
   const { listDetails, currentUser, reservations = [] } = props;
   const { onOpen } = useAuthModal();
+  const { refresh } = useRouter();
+  const [loading, setLoading] = useState(false);
   const [dateRange, setDateRange] = useState(InitialDateRange);
   const [totalPrice, setTotalPrice] = useState(listDetails?.price || 0);
 
@@ -46,14 +49,15 @@ export function PlaceReservations(props) {
       onOpen({ title: AuthConstants.LOGIN });
       return;
     }
-    console.log("called function");
-    const result = await addReservations({
-      totalPrice,
-      startDate: dateRange?.startDate,
-      endDate: dateRange?.endDate,
-      listingId: listDetails?.id,
-    });
-    //reservation api called
+    const result = await addReservations(
+      {
+        totalPrice,
+        startDate: dateRange?.startDate,
+        endDate: dateRange?.endDate,
+        listingId: listDetails?.id,
+      },
+      { refresh, setLoading }
+    );
   };
 
   return (
@@ -94,7 +98,7 @@ export function PlaceReservations(props) {
           type="submit"
           variant={"primary"}
           handleClick={onReservationCreated}
-          loading={false}
+          loading={loading}
         />
       </Box>
       <hr />

@@ -6,29 +6,28 @@ export const POST = async (request) => {
   try {
     const currentUser = await getUser();
     if (!currentUser) return NextResponse.error(401, "Unauthorized resource");
-    const data = request.json();
-    console.log(data);
+    const data = await request.json();
     const { listingId, startDate, endDate, totalPrice } = data;
-    // const reservation = await prisma.listing.update({
-    //   where: {
-    //     id: listingId,
-    //   },
+    const reservation = await prisma.listing.update({
+      where: {
+        id: listingId,
+      },
 
-    //   data: {
-    //     reservations: {
-    //       create: {
-    //         userId: currentUser?.id,
-    //         startDate,
-    //         endDate,
-    //         totalPrice,
-    //       },
-    //     },
-    //   },
-    // });
+      data: {
+        reservations: {
+          create: {
+            userId: currentUser?.id,
+            startDate,
+            endDate,
+            totalPrice,
+          },
+        },
+      },
+    });
     return NextResponse.json(
       {
         message: "Successfully created",
-        // data: reservation,
+        data: reservation,
       },
       { status: 201 }
     );

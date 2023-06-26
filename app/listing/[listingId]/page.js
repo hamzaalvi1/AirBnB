@@ -1,4 +1,5 @@
 import getListingById from "@/app/actions/getListingById";
+import getReservations from "@/app/actions/getReservations";
 import getUser from "@/app/actions/getUser";
 
 import { ClientRender } from "@/app/components/ClientRender";
@@ -7,10 +8,15 @@ import { PlaceDetails } from "@/app/components/PlaceDetails";
 async function ListingPage(props) {
   const { params } = props;
   const listDetails = await getListingById(params.listingId);
+  const reservations = await getReservations(params);
   const currentUser = await getUser();
   return (
     <ClientRender>
-      <PlaceDetails listDetails={listDetails} user={currentUser} />
+      <PlaceDetails
+        user={currentUser}
+        listDetails={listDetails}
+        reservations={reservations}
+      />
     </ClientRender>
   );
 }
