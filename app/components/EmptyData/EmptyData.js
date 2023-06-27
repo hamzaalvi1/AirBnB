@@ -8,16 +8,19 @@ function EmptyData(props) {
     paragraph = "Please reset your filters or refresh your page",
     showReset,
     resetHandler,
+    classes = "",
     buttonTitle = "Reset",
   } = props;
   const router = useRouter();
   return (
     <Flex
+      as="div"
       align={"center"}
       justify={"center"}
       width={"100%"}
       height={"100%"}
       flexFlow={"column"}
+      className={classes ? classes : ""}
     >
       <Heading
         variant={"primary"}

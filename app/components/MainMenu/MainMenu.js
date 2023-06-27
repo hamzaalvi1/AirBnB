@@ -12,9 +12,11 @@ import { AuthConstants, StatusConstants } from "@/app/config/constants";
 import { useAuthModal, useRentModal } from "@/app/hooks";
 import { yourHome, mainMenuWrapper, userMenu } from "./styles";
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 function MainMenu(props) {
   const { status, data } = useSession();
+  const router = useRouter();
   const { title, isOpen, onOpen, onClose } = useAuthModal();
   const { isRentModalOpen, rentModalOpen, rentModalClose } = useRentModal();
   const {
@@ -42,7 +44,7 @@ function MainMenu(props) {
   const authenticatedMenuItems = [
     {
       name: "My trips",
-      handleClick: () => console.log("Hello"),
+      handleClick: () => router.push("/trips"),
     },
     {
       name: "My favorites",

@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 function PlaceItems(props) {
-  const { listItem, currentUser } = props;
+  const { listItem, currentUser, reservedCheck = false } = props;
   const router = useRouter();
   const { getCountryByValue } = useCountries();
   const location = getCountryByValue(listItem?.locationValue);

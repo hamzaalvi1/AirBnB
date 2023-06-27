@@ -57,6 +57,11 @@ html {
 
 }
 
+.max-wrapper-height {
+    margin-top: 195px;
+    height: calc(100vh - 195px) !important;
+}
+
 .list-img {
     transition: 0.25s;
 }
@@ -83,6 +88,7 @@ html {
     font-size: 15px !important;
     width: 95% !important;
 }
+
 /* .airbnb-calender{
     background: #ff385c;
 } */

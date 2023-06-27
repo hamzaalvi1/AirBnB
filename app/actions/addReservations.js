@@ -15,7 +15,7 @@ const addReservations = async (params, paramsFunctions) => {
     const reservations = await fetchAPI(apiParams);
     if (reservations?.status == 201) {
       successLogger(reservations?.data?.message);
-      refresh();
+      push("/trips");
     }
   } catch (err) {
     console.log(err);

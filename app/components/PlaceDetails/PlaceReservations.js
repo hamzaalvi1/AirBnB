@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 export function PlaceReservations(props) {
   const { listDetails, currentUser, reservations = [] } = props;
   const { onOpen } = useAuthModal();
-  const { refresh } = useRouter();
+  const { push } = useRouter();
   const [loading, setLoading] = useState(false);
   const [dateRange, setDateRange] = useState(InitialDateRange);
   const [totalPrice, setTotalPrice] = useState(listDetails?.price || 0);
@@ -56,7 +56,7 @@ export function PlaceReservations(props) {
         endDate: dateRange?.endDate,
         listingId: listDetails?.id,
       },
-      { refresh, setLoading }
+      { push, setLoading }
     );
   };
 
