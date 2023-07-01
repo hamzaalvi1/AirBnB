@@ -52,7 +52,7 @@ function MainMenu(props) {
     },
     {
       name: "My reservations",
-      handleClick: () => console.log("Hello"),
+      handleClick: () => router.push("/reservations"),
     },
     {
       name: "Airbnb your home",

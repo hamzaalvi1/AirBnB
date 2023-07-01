@@ -17,7 +17,7 @@ function PlaceItems(props) {
   const location = getCountryByValue(listItem?.locationValue);
 
   const handleListItemClick = () => {
-    router.push(`/listing/${listItem?.id}`);
+    push(`/listing/${listItem?.id}`);
   };
   return (
     <GridItem w="100%" as={"div"} pos="relative" onClick={handleListItemClick}>
