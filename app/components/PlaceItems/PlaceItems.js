@@ -1,14 +1,18 @@
 "use client";
-import { GridItem, Box, Flex, Text } from "@chakra-ui/react";
+import { useState } from "react";
+import { GridItem, Box, Flex, Text, list } from "@chakra-ui/react";
 import { placeItemsImageStyles, placeItemsStyles } from "./styles";
+import { cancelReservations } from "@/app/actions";
 import { useCountries } from "@/app/hooks";
 import { Favorite } from "../Favorite";
+import { Button } from "../Button";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 function PlaceItems(props) {
   const { listItem, currentUser, reservedCheck = false } = props;
-  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const { push, refresh } = useRouter();
   const { getCountryByValue } = useCountries();
   const location = getCountryByValue(listItem?.locationValue);
 
@@ -46,23 +50,55 @@ function PlaceItems(props) {
             </Text>
           </Flex>
           <Flex as="div" align={"baseline"} flexFlow={"column"}>
-            <Text
-              as="span"
-              fontWeight={"bold"}
-              fontSize={"14px"}
-              color={"gray.500"}
-            >
-              {listItem?.category}
-            </Text>
+            {!reservedCheck && (
+              <Text
+                as="span"
+                fontWeight={"bold"}
+                fontSize={"14px"}
+                color={"gray.500"}
+              >
+                {listItem?.category}
+              </Text>
+            )}
+            {reservedCheck && (
+              <Text
+                as="span"
+                fontWeight={"bold"}
+                fontSize={"14px"}
+                color={"gray.500"}
+              >
+                {listItem?.startDate} - {listItem?.endDate}
+              </Text>
+            )}
             <Text
               as="span"
               fontWeight={"bold"}
               fontSize={"14px"}
               color={"gray.700"}
             >
-              $ {listItem?.price} day
+              {reservedCheck && listItem?.totalPrice
+                ? `Total Price: $ ${listItem?.totalPrice}`
+                : `$ ${listItem?.price} day`}
             </Text>
           </Flex>
+          {reservedCheck && (
+            <Flex>
+              <Button
+                title="Cancel Reservation"
+                variant={"primary"}
+                marginBlock={"10px"}
+                minHeight="40px"
+                loading={loading}
+                handleClick={(e) => {
+                  e.stopPropagation();
+                  cancelReservations(
+                    { reservationId: listItem?.reservationId },
+                    { setLoading, refresh }
+                  );
+                }}
+              />
+            </Flex>
+          )}
         </Flex>
       </Box>
     </GridItem>

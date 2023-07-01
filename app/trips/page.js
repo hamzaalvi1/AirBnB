@@ -1,5 +1,6 @@
 import { ClientRender } from "../components/ClientRender";
 import { EmptyData } from "../components/EmptyData";
+import { ReservationsListing } from "../components/ReservationsList";
 import getReservations from "../actions/getReservations";
 import getUser from "../actions/getUser";
 
@@ -23,9 +24,11 @@ async function TripsPage() {
 
   return (
     <ClientRender>
-      {console.log(reservations,"reservations")}  
       {reservations.length != 0 ? (
-        <>HELLO WORLD</>
+        <ReservationsListing
+          currentUser={currentUser}
+          reservations={reservations}
+        />
       ) : (
         <EmptyData
           classes="max-wrapper-height"

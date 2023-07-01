@@ -4,9 +4,9 @@ import { ReservationsRoutes } from "../config/api-routes";
 import { successLogger, errorLogger } from "../components/Toaster";
 
 const addReservations = async (params, paramsFunctions) => {
-  const { refresh, setLoading } = paramsFunctions;
+  const { push, setLoading } = paramsFunctions;
   const apiParams = {
-    url: ReservationsRoutes.ADD_RESERVATIONS,
+    url: ReservationsRoutes.ADD_DELETE_RESERVATIONS,
     method: ApiMethodsConstants.POST,
     data: params,
   };
