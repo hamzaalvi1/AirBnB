@@ -4,9 +4,12 @@ import { ClientRender } from "./components/ClientRender";
 import { EmptyData } from "./components/EmptyData";
 import { PlaceListing } from "./components/PlaceListing";
 
-export default async function Home() {
-  const listings = await getListing();
+export default async function Home(props) {
+  const { searchParams } = props;
   const currentUser = await getUser();
+  const listings = await getListing({
+    category: searchParams?.category ? searchParams?.category : "",
+  });
 
   return (
     <ClientRender>

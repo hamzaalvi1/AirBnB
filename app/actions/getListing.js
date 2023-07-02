@@ -1,9 +1,14 @@
-import { errorLogger } from "../components/Toaster";
 import prisma from "@/app/libs/prismadb";
 
-const getListing = async (params) => {
+const getListing = async (params = {}) => {
   try {
+    let query = {};
+    if (params && params?.userId) query.userId = params.userId;
+
+    if (params && params?.category) query.category = params.category;
+
     const listings = await prisma.listing.findMany({
+      where: query,
       orderBy: {
         createdAt: "desc",
       },
@@ -16,7 +21,7 @@ const getListing = async (params) => {
     return safeListings;
   } catch (err) {
     console.log(err);
-    errorLogger(500, "something went wrong");
+    throw new Error(err);
   }
 };
 

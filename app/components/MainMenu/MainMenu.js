@@ -48,7 +48,7 @@ function MainMenu(props) {
     },
     {
       name: "My favorites",
-      handleClick: () => console.log("Hello"),
+      handleClick: () => router.push("/favorites"),
     },
     {
       name: "My reservations",
@@ -56,7 +56,7 @@ function MainMenu(props) {
     },
     {
       name: "Airbnb your home",
-      handleClick: () => console.log("Hello"),
+      handleClick: () => handleModelOpen(AuthConstants.SIGNUP),
     },
     {
       name: "Logout",
