@@ -6,7 +6,7 @@ import { MainMenu } from "../MainMenu";
 import { navbarStyles } from "./styles";
 import Link from "next/link";
 
-function Navbar() {
+function Navbar(props) {
   return (
     <Box as="nav" sx={navbarStyles}>
       <Link href={"/"}>

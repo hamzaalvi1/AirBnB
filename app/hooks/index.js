@@ -1,7 +1,8 @@
+import useFavorite from "./useFavorite";
 import useAuthModal from "./useAuthModal";
 import useRentModal from "./useRentModal";
 import useCountries from "./useCountries";
-import useFavorite from "./useFavorite";
+import useToggleExplore from "./useToggleExplore";
 import useAuthenticatedUser from "./useAuthenticatedUser";
 
 export {
@@ -9,5 +10,6 @@ export {
   useRentModal,
   useCountries,
   useFavorite,
+  useToggleExplore,
   useAuthenticatedUser,
 };

@@ -1,12 +1,17 @@
 "use client";
 import { Box, Text } from "@chakra-ui/react";
 import { BiSearch } from "react-icons/bi";
+import { useToggleExplore } from "@/app/hooks";
 import { exploreWrapper, exploreButtons, searchButton } from "./styles";
 
 function Explore(props) {
-  const {} = props;
+  const { handleToggleExplore } = useToggleExplore();
+  const handleToggleClick = (e) => {
+    e.stopPropagation();
+    handleToggleExplore();
+  };
   return (
-    <Box as="div" sx={exploreWrapper}>
+    <Box as="div" sx={exploreWrapper} onClick={(e) => handleToggleClick(e)}>
       <Box as={"div"} sx={exploreButtons}>
         <Text fontSize={"sm"} fontWeight={"semibold"}>
           Anywhere
