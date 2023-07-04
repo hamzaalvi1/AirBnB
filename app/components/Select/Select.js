@@ -11,11 +11,14 @@ function CustomSelect(props) {
     clearable = false,
     handleChange,
     name,
+    changebleStyles = "",
     formatOptionLabel,
     placeholder,
     defaultValue,
     id,
     value,
+    className,
+    changebleTheme = "",
     ...rest
   } = props;
 
@@ -65,8 +68,9 @@ function CustomSelect(props) {
       placeholder={placeholder}
       defaultValue={defaultValue}
       formatOptionLabel={formatOptionLabel}
-      styles={styles}
-      theme={theme}
+      styles={changebleStyles ? changebleStyles : styles}
+      className={className}
+      theme={changebleTheme ? changebleTheme : theme}
       value={value}
     />
   );

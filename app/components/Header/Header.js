@@ -9,7 +9,7 @@ function Header() {
   const { isToggle } = useToggleExplore();
   return (
     <Box as="header" py={2} sx={HeaderStyles}>
-      <Navbar />
+      <Navbar isToggle={isToggle} />
       {!isToggle && <Categories />}
     </Box>
   );

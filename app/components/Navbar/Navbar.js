@@ -1,12 +1,14 @@
 "use client";
 import { Box } from "@chakra-ui/react";
-import Image from "next/image";
 import { Explore } from "../Explore";
+import { ExploreMenu } from "../ExploreMenu";
 import { MainMenu } from "../MainMenu";
 import { navbarStyles } from "./styles";
+import Image from "next/image";
 import Link from "next/link";
 
 function Navbar(props) {
+  const { isToggle } = props;
   return (
     <Box as="nav" sx={navbarStyles}>
       <Link href={"/"}>
@@ -19,7 +21,7 @@ function Navbar(props) {
           priority={"low"}
         />
       </Link>
-      <Explore />
+      {!isToggle ? <Explore /> : <ExploreMenu />}
       <MainMenu />
     </Box>
   );

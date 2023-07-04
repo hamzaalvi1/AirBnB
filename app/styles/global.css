@@ -89,6 +89,10 @@ html {
     width: 95% !important;
 }
 
+.place-selections {
+    border: none
+}
+
 /* .airbnb-calender{
     background: #ff385c;
 } */
