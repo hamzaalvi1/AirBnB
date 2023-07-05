@@ -1,17 +1,18 @@
 "use client";
 import { Box, Text } from "@chakra-ui/react";
 import { BiSearch } from "react-icons/bi";
-import { useToggleExplore } from "@/app/hooks";
 import { exploreWrapper, exploreButtons, searchButton } from "./styles";
+import { useExploreModal } from "@/app/hooks";
+import { ExploreModal } from "../ExploreModal";
 
 function Explore(props) {
-  const { handleToggleExplore } = useToggleExplore();
-  const handleToggleClick = (e) => {
+  const { onOpen, onClose, isToggle } = useExploreModal();
+  const handleExploreModalOpen = (e) => {
     e.stopPropagation();
-    handleToggleExplore();
+    onOpen();
   };
   return (
-    <Box as="div" sx={exploreWrapper} onClick={(e) => handleToggleClick(e)}>
+    <Box as="div" sx={exploreWrapper} onClick={handleExploreModalOpen}>
       <Box as={"div"} sx={exploreButtons}>
         <Text fontSize={"sm"} fontWeight={"semibold"}>
           Anywhere
@@ -40,6 +41,14 @@ function Explore(props) {
           <BiSearch size={18} />
         </Box>
       </Box>
+      {isToggle && (
+        <ExploreModal
+          isOpen={isToggle}
+          onClose={onClose}
+          title={"Explore Your Trip!"}
+          onOpen={onOpen}
+        />
+      )}
     </Box>
   );
 }

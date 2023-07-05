@@ -1,14 +1,13 @@
 "use client";
 import { Flex, Box, Heading, Grid, GridItem } from "@chakra-ui/react";
 import { RiCloseCircleFill } from "react-icons/ri";
-import { useToggleExplore, useCountries } from "@/app/hooks";
+import { useCountries } from "@/app/hooks";
 import { exploreMenuStyles, selectStyles, selectTheme } from "./styles";
 import { Select } from "../Select";
 
 import Flags from "country-flag-icons/react/3x2";
 
 function ExploreMenu() {
-  const { handleCloseExplore } = useToggleExplore();
   const { getAllCountries } = useCountries();
   const formattedOptions = (options) => {
     const Flag = Flags[options.countryCode];
