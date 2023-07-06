@@ -6,7 +6,7 @@ import getUser from "../actions/getUser";
 
 async function FavoritesPage() {
   const currentUser = await getUser();
-  const favorites = await getFavoritesListing();
+  const favorites = []
   if (!currentUser) {
     return (
       <ClientRender>

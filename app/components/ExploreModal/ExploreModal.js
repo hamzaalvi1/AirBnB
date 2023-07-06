@@ -10,6 +10,8 @@ import {
   ExploreConstants,
   ExploreStepsConstants,
 } from "@/app/config/constants";
+import { InitialDateRange } from "@/app/config/constants";
+
 import ExploreStepper from "./ExploreStepper";
 
 const ExploreModal = (props) => {
@@ -21,7 +23,7 @@ const ExploreModal = (props) => {
 
   const initialValues = {
     [ExploreConstants.LOCATION]: null,
-    [ExploreConstants.DATE_TIME]: null,
+    [ExploreConstants.DATE_TIME]: InitialDateRange,
     [ExploreConstants.ROOM_COUNT]: 1,
     [ExploreConstants.GUEST_COUNT]: 1,
     [ExploreConstants.BATHROOM_COUNT]: 1,
@@ -43,14 +45,14 @@ const ExploreModal = (props) => {
     if (exploreStepper == ExploreStepsConstants.LOCATION && !values.location) {
       setError(ExploreConstants.LOCATION, "Please select the location.");
       return;
-    } 
+    }
     // else if (
     //   exploreStepper == ExploreStepsConstants.DATE_TIME &&
     //   !values.DATE_TIME
     // ) {
     //   setError(ExploreConstants.DATE_TIME, "Please select the dates");
     //   return;
-    // } 
+    // }
     else {
       setExploreStepper(exploreStepper + 1);
     }
@@ -67,6 +69,7 @@ const ExploreModal = (props) => {
         initialValues={initialValues}
         onSubmit={(values, formikProps) => {
           const { setFieldError, setSubmitting, resetForm } = formikProps;
+          console.log("Called");
         }}
       >
         {(formikProps) => {
