@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { ClientRender } from "../components/ClientRender";
 import { EmptyData } from "../components/EmptyData";
 import { PlaceListing } from "../components/PlaceListing";
@@ -6,7 +7,7 @@ import getUser from "../actions/getUser";
 
 async function FavoritesPage() {
   const currentUser = await getUser();
-  const favorites = []
+  const favorites = await getFavoritesListing();
   if (!currentUser) {
     return (
       <ClientRender>
@@ -23,12 +24,15 @@ async function FavoritesPage() {
 
   return (
     <ClientRender>
+      {" "}
       {favorites.length != 0 ? (
-        <PlaceListing
-          currentUser={currentUser}
-          listings={favorites}
-          classes={"max-wrapper-height"}
-        />
+        <Suspense fallback={"loading...."}>
+          <PlaceListing
+            currentUser={currentUser}
+            listings={favorites}
+            classes={"max-wrapper-height"}
+          />
+        </Suspense>
       ) : (
         <EmptyData
           classes="max-wrapper-height"

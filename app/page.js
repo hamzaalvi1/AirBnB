@@ -12,6 +12,13 @@ export default async function Home(props) {
     locationValue: searchParams?.locationValue
       ? searchParams?.locationValue
       : "",
+    bathroomCount: searchParams?.bathroomCount
+      ? searchParams?.bathroomCount
+      : "",
+    roomCount: searchParams?.roomCount ? searchParams?.roomCount : "",
+    guestCount: searchParams?.guestCount ? searchParams?.guestCount : "",
+    startDate: searchParams?.startDate ? searchParams?.startDate : "",
+    endDate: searchParams?.endDate ? searchParams?.endDate : "",
   });
 
   return (

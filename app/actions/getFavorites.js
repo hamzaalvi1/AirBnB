@@ -4,7 +4,9 @@ import getUser from "./getUser";
 const getFavoritesListing = async () => {
   try {
     const currentUser = await getUser();
-    if (!currentUser) throw new Error("user is logged in");
+    if (!currentUser) {
+      return [];
+    }
 
     const favoritesList = await prisma.listing.findMany({
       where: {
