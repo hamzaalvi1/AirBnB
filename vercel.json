@@ -1,16 +1,25 @@
 {
-  "builds": [{ "src": "package.json", "use": "@vercel/node" }],
-  "version": 2,
-  
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.js"
-    }
-  ],
-  "build": {
+    "version": 2,
+    "builds": [
+      {
+        "src": "app/**",
+        "use": "@vercel/next"
+      }
+    ],
     "env": {
       "PRISMA_GENERATE": "1"
-    }
+    },
+    "build": {
+      "env": {
+        "PRISMA_GENERATE": "1"
+      },
+      "commands": [
+        {
+          "command": "npx prisma generate"
+        }
+      ]
+    },
+    "routes": [
+      { "src": "/(.*)", "dest": "/app/page.js" }
+    ]
   }
-}
