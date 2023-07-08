@@ -1,8 +1,8 @@
-export const navbarStyles = {
+export const navbarStyles = (gridValue) => ({
   display: "grid",
-  gridTemplateColumns: "1fr 1fr 1fr",
+  gridTemplateColumns: gridValue,
   alignItems: "center",
   borderBottom: "1px solid #dddddd",
   paddingBlock: "15px",
   paddingInline: "30px",
-};
+});

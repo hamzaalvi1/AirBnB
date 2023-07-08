@@ -4,19 +4,19 @@ import { useState } from "react";
 import { Modal } from "../Modal";
 import { Formik } from "formik";
 import { Button } from "../Button";
-import { useRouter } from "next/navigation";
 import { stepperButtons } from "../RentModal/RentModalStyles";
 import {
   ExploreConstants,
   ExploreStepsConstants,
 } from "@/app/config/constants";
+import { isEqual, format } from "date-fns";
 import { InitialDateRange } from "@/app/config/constants";
-
+import { useExploreSelection } from "@/app/hooks";
 import ExploreStepper from "./ExploreStepper";
 
 const ExploreModal = (props) => {
   const { isOpen, onClose, title } = props;
-  const router = useRouter();
+  const { setExploreDetails } = useExploreSelection();
   const [exploreStepper, setExploreStepper] = useState(
     ExploreStepsConstants.LOCATION
   );
@@ -45,15 +45,13 @@ const ExploreModal = (props) => {
     if (exploreStepper == ExploreStepsConstants.LOCATION && !values.location) {
       setError(ExploreConstants.LOCATION, "Please select the location.");
       return;
-    }
-    // else if (
-    //   exploreStepper == ExploreStepsConstants.DATE_TIME &&
-    //   !values.DATE_TIME
-    // ) {
-    //   setError(ExploreConstants.DATE_TIME, "Please select the dates");
-    //   return;
-    // }
-    else {
+    } else if (
+      exploreStepper == ExploreStepsConstants.DATE_TIME &&
+      isEqual(values?.dateTime?.startDate, values?.dateTime?.endDate)
+    ) {
+      setError(ExploreConstants.DATE_TIME, "Please select the dates");
+      return;
+    } else {
       setExploreStepper(exploreStepper + 1);
     }
   };
@@ -68,8 +66,25 @@ const ExploreModal = (props) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values, formikProps) => {
-          const { setFieldError, setSubmitting, resetForm } = formikProps;
-          console.log("Called");
+          const { setSubmitting } = formikProps;
+          const dateFormat = "MM/dd/yyyy";
+          const exploreSelection = {
+            location: {
+              label: values?.location?.label,
+              value: values?.location?.value,
+            },
+            bathroom: values?.bathroomCount,
+            room: values?.roomCount,
+            guests: values?.guestCount,
+            date: `${format(
+              values?.dateTime?.startDate,
+              dateFormat
+            )} to ${format(values?.dateTime?.endDate, dateFormat)}`,
+          };
+          setExploreDetails(exploreSelection);
+          setSubmitting(false);
+          handleOnClose();
+          onExploreToggleOpen();
         }}
       >
         {(formikProps) => {
@@ -110,7 +125,7 @@ const ExploreModal = (props) => {
                   <Button
                     key="submit-btn"
                     fontWeight={"bold"}
-                    title={"Submit"}
+                    title={"Find"}
                     type={"submit"}
                     variant={"primary"}
                     loading={isSubmitting}

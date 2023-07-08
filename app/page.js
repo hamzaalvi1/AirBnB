@@ -9,6 +9,9 @@ export default async function Home(props) {
   const currentUser = await getUser();
   const listings = await getListing({
     category: searchParams?.category ? searchParams?.category : "",
+    locationValue: searchParams?.locationValue
+      ? searchParams?.locationValue
+      : "",
   });
 
   return (

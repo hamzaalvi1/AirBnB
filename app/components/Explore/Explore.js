@@ -1,21 +1,76 @@
 "use client";
 import { Box, Text } from "@chakra-ui/react";
 import { BiSearch } from "react-icons/bi";
+import { MdClose } from "react-icons/md";
 import { exploreWrapper, exploreButtons, searchButton } from "./styles";
-import { useExploreModal } from "@/app/hooks";
+import { useExploreModal, useExploreSelection } from "@/app/hooks";
 import { ExploreModal } from "../ExploreModal";
+import { useSearchParams, useRouter } from "next/navigation";
+import { parseQueryParams, appendQueryParams } from "@/app/utils";
+import { formatISO } from "date-fns";
 
 function Explore(props) {
+  const params = useSearchParams();
+  const router = useRouter();
   const { onOpen, onClose, isToggle } = useExploreModal();
+  const {
+    exploreDetails,
+    isExploreToggle,
+    onExploreToggleOpen,
+    onExploreToggleClose,
+    setExploreDetails,
+  } = useExploreSelection();
+  const { location, guests, date, bathroom, room } = exploreDetails;
+
   const handleExploreModalOpen = (e) => {
     e.stopPropagation();
     onOpen();
   };
+
+  const handleUpdatedUrl = (e) => {
+    e.stopPropagation();
+    if (!location?.label) return;
+    let currentQueryParams = params ? parseQueryParams(params) : {};
+    let [startDate, endDate] = date.split("to");
+    let isoStartDate = formatISO(new Date(startDate));
+    let isoEndDate = formatISO(new Date(endDate));
+    let updatedQueryParams = {
+      ...currentQueryParams,
+      locationValue: location?.value,
+      guestCount: guests,
+      roomCount: room,
+      bathroomCount: bathroom,
+      startDate: isoStartDate,
+      endDate: isoEndDate,
+    };
+    let url = appendQueryParams(
+      "/",
+      updatedQueryParams,
+      {},
+      { skipNull: true }
+    );
+    router.push(url);
+    onExploreToggleOpen();
+  };
+
+  const handleRemoveUrl = (e) => {
+    e.stopPropagation();
+    router.push("/");
+    onExploreToggleClose();
+    setExploreDetails({
+      location: "",
+      date: "",
+      guests: "",
+      room: "",
+      bathroom: "",
+    });
+  };
+
   return (
     <Box as="div" sx={exploreWrapper} onClick={handleExploreModalOpen}>
       <Box as={"div"} sx={exploreButtons}>
         <Text fontSize={"sm"} fontWeight={"semibold"}>
-          Anywhere
+          {location?.label || "Anywhere"}
         </Text>
       </Box>
       <Box
@@ -25,7 +80,7 @@ function Explore(props) {
         borderColor={"borderColor"}
       >
         <Text fontSize={"sm"} fontWeight={"semibold"}>
-          Any week
+          {date || "Any week"}
         </Text>
       </Box>
       <Box
@@ -35,10 +90,14 @@ function Explore(props) {
         alignItems={"center"}
       >
         <Text fontSize={"sm"} fontWeight={"semibold"} color={"darkGrey"}>
-          Add guests
+          {guests ? `${guests} guest` : "Add guests"}
         </Text>
-        <Box as={"span"} sx={searchButton}>
-          <BiSearch size={18} />
+        <Box
+          as={"span"}
+          sx={searchButton}
+          onClick={isExploreToggle ? handleRemoveUrl : handleUpdatedUrl}
+        >
+          {isExploreToggle ? <MdClose size={18} /> : <BiSearch size={18} />}
         </Box>
       </Box>
       {isToggle && (
