@@ -19,7 +19,7 @@ function Favorite(props) {
       setHasFavorite(true);
     }
   }, []);
-
+  console.log("HELLO")
   const handleAddDeleteFavorite = async (e, type) => {
     e.stopPropagation();
     const response = await addFavorites({
