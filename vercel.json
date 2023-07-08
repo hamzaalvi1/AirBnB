@@ -12,12 +12,8 @@
     "build": {
       "env": {
         "PRISMA_GENERATE": "1"
-      },
-      "commands": [
-        {
-          "command": "npx prisma generate"
-        }
-      ]
+      }
+     
     },
     "routes": [
       { "src": "/(.*)", "dest": "/app/page.js" }

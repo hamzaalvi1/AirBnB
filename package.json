@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prisma:generate": "prisma generate",
-    "buildCommand": "next build"
+    "prisma:generate": "prisma generate"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.6.1",
