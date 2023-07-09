@@ -83,7 +83,8 @@ function MainMenu(props) {
       </Box>
     );
   };
-
+  console.log(data,"data")
+  console.log("status",status);
   return (
     <>
       <Box as={"div"} sx={mainMenuWrapper}>
