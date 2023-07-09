@@ -5,6 +5,7 @@ import getSession from "./getSession";
 const getUser = async () => {
   try {
     const session = await getSession();
+    console.log(session,"session")
     if (!session?.user?.email) {
       return null;
     }

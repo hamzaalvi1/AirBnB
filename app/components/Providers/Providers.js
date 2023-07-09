@@ -6,7 +6,7 @@ import { theme } from "@/app/styles/theme";
 
 function Providers({ children }) {
   return (
-    <SessionProvider>
+    <SessionProvider basePath="/api/auth">
       <ChakraProvider resetCSS={true} theme={theme}>
         <ToasterProvider />
         {children}
