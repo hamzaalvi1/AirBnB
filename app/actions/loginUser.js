@@ -6,7 +6,6 @@ const loginUserWithCredentials = async (params) => {
   try {
     const getCredentials = await signIn("credentials", {
       ...values,
-      redirect: false,
     });
     if (getCredentials?.ok && getCredentials?.status == 200) {
       successLogger("Logged in");
