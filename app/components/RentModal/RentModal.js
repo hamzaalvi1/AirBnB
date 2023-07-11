@@ -42,7 +42,14 @@ const RentModal = (props) => {
 
   const handleAddList = async (values, submitProps) => {
     const { setSubmitting, resetForm } = submitProps;
-    addList({ values, setSubmitting, resetForm, onClose, router });
+    addList({
+      values,
+      setSubmitting,
+      resetForm,
+      onClose,
+      router,
+      setRentStepper,
+    });
   };
 
   const handleNextStep = (values, setError) => {
@@ -79,10 +86,10 @@ const RentModal = (props) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values, formikProps) => {
-          const { setFieldError, setSubmitting, resetForm } = formikProps;
-          if (rentStepper == RentStepsConstants.PRICE && !values.price) {
+          const { setSubmitting, resetForm, setFieldError } = formikProps;
+          if (!values.price) {
             setSubmitting(false);
-            setFieldError(RentConstants.PRICE, "Please enter a price");
+            setFieldError(RentConstants.PRICE, "Please must not be 0");
             return;
           }
           handleAddList(values, { resetForm, setSubmitting });
@@ -119,6 +126,7 @@ const RentModal = (props) => {
                 />
                 {rentStepper == RentStepsConstants.PRICE ? (
                   <Button
+                    key={"submit-btn"}
                     fontWeight={"bold"}
                     title={"Submit"}
                     type={"submit"}
@@ -127,6 +135,7 @@ const RentModal = (props) => {
                   />
                 ) : (
                   <Button
+                    key={"nextStep-btn"}
                     fontWeight={"bold"}
                     handleClick={(e) => {
                       e.stopPropagation;

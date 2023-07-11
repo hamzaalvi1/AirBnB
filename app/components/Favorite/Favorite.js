@@ -4,12 +4,16 @@ import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { ApiMethodsConstants } from "@/app/config/constants";
 import { addFavorites } from "@/app/actions";
 import { useRouter } from "next/navigation";
+import { useAuthModal } from "@/app/hooks";
+import { AuthConstants } from "@/app/config/constants";
 
 import styles from "./favorite.module.css";
 function Favorite(props) {
   const { favoriteId, currentUser } = props;
   const [hasFavorite, setHasFavorite] = useState(false);
   const { refresh } = useRouter();
+  const { onOpen } = useAuthModal();
+
   useEffect(() => {
     if (
       currentUser &&
@@ -21,6 +25,10 @@ function Favorite(props) {
   }, []);
   const handleAddDeleteFavorite = async (e, type) => {
     e.stopPropagation();
+    if (!currentUser) {
+      onOpen({ title: AuthConstants.LOGIN });
+      return;
+    }
     const response = await addFavorites({
       listingId: favoriteId,
       currentUser,

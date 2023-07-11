@@ -1,10 +1,12 @@
 import { fetchAPI } from "../utils";
 import { ListingRoutes } from "../config/api-routes";
 import { ApiMethodsConstants } from "../config/constants";
+import { RentStepsConstants } from "../config/constants";
 import { successLogger, errorLogger } from "../components/Toaster";
 
 const addList = async (params) => {
-  const { values, setSubmitting, resetForm, onClose, router } = params;
+  const { values, setSubmitting, resetForm, onClose, router, setRentStepper } =
+    params;
 
   const apiParams = {
     url: ListingRoutes.ADD_LISTINGS,
@@ -17,6 +19,7 @@ const addList = async (params) => {
       successLogger(list?.data?.message);
       resetForm();
       onClose();
+      setRentStepper(RentStepsConstants.CATEGORY);
       router.refresh();
     }
   } catch (err) {

@@ -1,9 +1,10 @@
 "use client";
+import { Input } from "../../Input";
 import { Box } from "@chakra-ui/react";
 import { RentHeading } from "../RentContent";
-import { Input } from "../../Input";
-import { RentConstants } from "@/app/config/constants";
 import { ImCoinDollar } from "react-icons/im";
+import { RentConstants } from "@/app/config/constants";
+import { FormikErrorText } from "../../FormikErrorText";
 
 function Price(props) {
   const { values, errors, handleValuesChange } = props;
@@ -27,6 +28,14 @@ function Price(props) {
         onChange={(e) =>
           handleValuesChange(RentConstants.PRICE, e.target.value)
         }
+      />
+      <FormikErrorText
+        fieldName={RentConstants.PRICE}
+        errorObj={errors}
+        fontSize={"15px"}
+        margin={"10px 0 0"}
+        fontWeight={"black"}
+        padding={0}
       />
     </Box>
   );

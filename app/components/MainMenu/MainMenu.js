@@ -1,22 +1,22 @@
 "use client";
 import Image from "next/image";
-import { Box, Text, useDisclosure } from "@chakra-ui/react";
-import { useSession } from "next-auth/react";
-import { Spinner } from "@chakra-ui/react";
 import { DropDown } from "../DropDown";
-import { AuthModal } from "../AuthModal";
-import { RentModal } from "../RentModal";
 import { FiMenu } from "react-icons/fi";
-import { FaUserCircle } from "react-icons/fa";
-import { AuthConstants, StatusConstants } from "@/app/config/constants";
-import { useAuthModal, useRentModal } from "@/app/hooks";
-import { yourHome, mainMenuWrapper, userMenu } from "./styles";
+import { errorLogger } from "../Toaster";
+import { RentModal } from "../RentModal";
+import { AuthModal } from "../AuthModal";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { FaUserCircle } from "react-icons/fa";
+import { useAuthModal, useRentModal } from "@/app/hooks";
+import { yourHome, mainMenuWrapper, userMenu } from "./styles";
+import { Box, Text, useDisclosure, Spinner } from "@chakra-ui/react";
+import { AuthConstants, StatusConstants } from "@/app/config/constants";
 
 function MainMenu(props) {
-  const { status, data } = useSession();
   const router = useRouter();
+  const { status, data } = useSession();
   const { title, isOpen, onOpen, onClose } = useAuthModal();
   const { isRentModalOpen, rentModalOpen, rentModalClose } = useRentModal();
   const {
@@ -28,35 +28,61 @@ function MainMenu(props) {
     closeMenu();
     onOpen({ title: title });
   };
+  const handleRentModalOpen = () => {
+    if (
+      status == StatusConstants.UNAUTHENTICATED ||
+      status == StatusConstants.LOADING
+    ) {
+      errorLogger("Please login to add your place");
+      if (isMenuOpen) {
+        closeMenu();
+      }
+      return;
+    }
+    rentModalOpen();
+    closeMenu();
+  };
+  const handleMenuItemsClick = (routes) => {
+    router.push(routes);
+    if (isMenuOpen) {
+      closeMenu();
+    }
+  };
+  const handleUnAuthItemsClick = (authItem) => {
+    handleModelOpen(authItem);
+    if (isMenuOpen) {
+      closeMenu();
+    }
+  };
   const unAuthenticatedMenuItems = [
     {
       name: AuthConstants.SIGNUP,
-      handleClick: () => handleModelOpen(AuthConstants.SIGNUP),
+      handleClick: () => handleUnAuthItemsClick(AuthConstants.SIGNUP),
     },
     {
       name: AuthConstants.LOGIN,
-      handleClick: () => handleModelOpen(AuthConstants.LOGIN),
+      handleClick: () => handleUnAuthItemsClick(AuthConstants.LOGIN),
     },
 
-    { name: "Airbnb your home", handleClick: () => console.log("HELLO") },
+    { name: "Airbnb your home", handleClick: () => handleRentModalOpen() },
     { name: "Help", handleClick: () => console.log("Hello") },
   ];
   const authenticatedMenuItems = [
     {
       name: "My trips",
-      handleClick: () => router.push("/trips"),
+      handleClick: () => handleMenuItemsClick("/trips"),
     },
     {
       name: "My favorites",
-      handleClick: () => router.push("/favorites"),
+      handleClick: () => handleMenuItemsClick("/favorites"),
     },
     {
       name: "My reservations",
-      handleClick: () => router.push("/reservations"),
+      handleClick: () => handleMenuItemsClick("/reservations"),
     },
     {
       name: "Airbnb your home",
-      handleClick: () => handleModelOpen(AuthConstants.SIGNUP),
+      handleClick: () => handleRentModalOpen(),
     },
     {
       name: "Logout",
@@ -83,8 +109,7 @@ function MainMenu(props) {
       </Box>
     );
   };
-  console.log(data,"data")
-  console.log("status",status);
+
   return (
     <>
       <Box as={"div"} sx={mainMenuWrapper}>
@@ -92,7 +117,7 @@ function MainMenu(props) {
           fontSize={"14px"}
           fontWeight={"bold"}
           sx={yourHome}
-          onClick={() => rentModalOpen()}
+          onClick={handleRentModalOpen}
         >
           Airbnb your home
         </Text>
