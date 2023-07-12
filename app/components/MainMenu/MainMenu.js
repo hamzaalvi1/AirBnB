@@ -3,8 +3,10 @@ import Image from "next/image";
 import { DropDown } from "../DropDown";
 import { FiMenu } from "react-icons/fi";
 import { errorLogger } from "../Toaster";
+import { useRef, useEffect } from "react";
 import { RentModal } from "../RentModal";
 import { AuthModal } from "../AuthModal";
+import { document } from "browser-monads";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -16,6 +18,7 @@ import { AuthConstants, StatusConstants } from "@/app/config/constants";
 
 function MainMenu(props) {
   const router = useRouter();
+  const dropdownRef = useRef(null);
   const { status, data } = useSession();
   const { title, isOpen, onOpen, onClose } = useAuthModal();
   const { isRentModalOpen, rentModalOpen, rentModalClose } = useRentModal();
@@ -109,7 +112,19 @@ function MainMenu(props) {
       </Box>
     );
   };
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      closeMenu();
+      // Access the event object here
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
 
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
   return (
     <>
       <Box as={"div"} sx={mainMenuWrapper}>
@@ -144,6 +159,7 @@ function MainMenu(props) {
             isMenuOpen={isMenuOpen}
             toggleMenu={toggleMenu}
             dividerCount={2}
+            ref={dropdownRef}
           />
         ) : (
           <Spinner

@@ -1,7 +1,7 @@
 const MODULE_PREFIX = "/auth";
 
 const routes = {
-  SIGN_UP: `${MODULE_PREFIX}/signup`,
+  SIGN_UP: `/signup`,
   GET_USER: `${MODULE_PREFIX}/getuser`,
 };
 

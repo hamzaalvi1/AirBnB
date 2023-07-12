@@ -20,7 +20,7 @@ const registerUser = async (registerParams) => {
       onOpen({ title: AuthConstants.LOGIN });
     }
   } catch (err) {
-    console.log(err);
+    console.log(err.message);
     errorLogger(err);
   }
 };

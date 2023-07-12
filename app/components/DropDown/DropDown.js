@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import { forwardRef, useRef } from "react";
 import {
   Menu,
   MenuButton,
@@ -9,7 +9,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 
-const DropDown = (props) => {
+const DropDown = forwardRef(function DropDown(props, ref) {
   const {
     menuItems = [],
     styleProps,
@@ -22,6 +22,7 @@ const DropDown = (props) => {
   return (
     <Menu isLazy sx={styleProps}>
       <MenuButton
+        ref={ref}
         as={"button"}
         onClick={() => {
           toggleMenu();
@@ -48,6 +49,6 @@ const DropDown = (props) => {
       {children}
     </Menu>
   );
-};
+});
 
 export default DropDown;
