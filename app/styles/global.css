@@ -129,4 +129,9 @@ html {
     .grip-single {
         grid-template-columns: repeat(1, 1fr) !important;
     }
+
+    .reservation-grid {
+        grid-template-columns: repeat(1, 1fr) !important;
+
+    }
 }

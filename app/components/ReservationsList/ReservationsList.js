@@ -20,6 +20,7 @@ function ReservationsListing(props) {
           templateColumns={`repeat(${isSmallThan1600 ? 4 : 5}, 1fr)`}
           gap={-2}
           rowGap={5}
+          className="reservation-grid"
         >
           {reservations.map((list) => {
             let reservation = {

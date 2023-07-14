@@ -3,7 +3,11 @@ import { Text, Heading, Box } from "@chakra-ui/react";
 function ReservationContent(props) {
   const { heading, text } = props;
   return (
-    <Box as={"div"} paddingLeft={10}>
+    <Box
+      as={"div"}
+      paddingLeft={10}
+      sx={{ "@media(max-width:575px)": { padding: 0 } }}
+    >
       {" "}
       <Heading
         variant={"primary"}
