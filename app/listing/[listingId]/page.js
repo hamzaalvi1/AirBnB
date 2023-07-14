@@ -5,6 +5,15 @@ import getUser from "@/app/actions/getUser";
 import { ClientRender } from "@/app/components/ClientRender";
 import { PlaceDetails } from "@/app/components/PlaceDetails";
 
+export async function generateMetadata({ params }) {
+  const listDetails = await getListingById(params.listingId);
+
+  return {
+    title: listDetails.title,
+    description: listDetails.description,
+  };
+}
+
 async function ListingPage(props) {
   const { params } = props;
   const listDetails = await getListingById(params.listingId);

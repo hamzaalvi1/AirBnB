@@ -5,7 +5,7 @@ export const AuthHeadings = (props) => {
   return (
     <>
       <Heading variant={"primary"} my={"5px"} fontWeight={"bold"}>
-        {view == AuthConstants.SIGNUP ? "Welcome to Airbnb" : "Welcome Back"}
+        {view == AuthConstants.SIGNUP ? "Welcome to Homee." : "Welcome Back"}
       </Heading>
       <Text fontSize={13} as={"p"} my={"10px"} textStyle="secondary">
         {view == AuthConstants.SIGNUP

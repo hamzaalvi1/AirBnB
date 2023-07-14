@@ -25,7 +25,7 @@ export const POST = async (req, { params }) => {
     });
     return NextResponse.json(
       {
-        ...user,
+        message: "Successfully Added",
       },
       { status: 200, statusText: "Successfully Added" }
     );
@@ -56,10 +56,10 @@ export const DELETE = async (req, { params }) => {
         favoriteIds,
       },
     });
-    delete user?.hashedPassword
+    delete user?.hashedPassword;
     return NextResponse.json(
       {
-        ...user,
+        message: "Remove Successfully",
       },
       { status: 200, statusText: "Remove Successfully" }
     );

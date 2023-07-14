@@ -17,8 +17,8 @@ function Navbar(props) {
     >
       <Link href={"/"}>
         <Image
-          src={"/images/logo.png"}
-          width={95}
+          src={"/images/logo-new.png"}
+          width={130}
           height={"100"}
           alt="logo"
           style={{ cursor: "pointer" }}

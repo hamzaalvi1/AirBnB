@@ -67,7 +67,7 @@ function MainMenu(props) {
       handleClick: () => handleUnAuthItemsClick(AuthConstants.LOGIN),
     },
 
-    { name: "Airbnb your home", handleClick: () => handleRentModalOpen() },
+    { name: "Add your place", handleClick: () => handleRentModalOpen() },
     { name: "Help", handleClick: () => console.log("Hello") },
   ];
   const authenticatedMenuItems = [
@@ -84,7 +84,7 @@ function MainMenu(props) {
       handleClick: () => handleMenuItemsClick("/reservations"),
     },
     {
-      name: "Airbnb your home",
+      name: "Add your place",
       handleClick: () => handleRentModalOpen(),
     },
     {
@@ -134,7 +134,7 @@ function MainMenu(props) {
           sx={yourHome}
           onClick={handleRentModalOpen}
         >
-          Airbnb your home
+          Add Your Place
         </Text>
         <Box as={"span"}>
           <svg
@@ -174,7 +174,7 @@ function MainMenu(props) {
       <RentModal
         isOpen={isRentModalOpen}
         onClose={rentModalClose}
-        title={"Airbnb Your Home"}
+        title={"Homee. Your Home"}
         onOpen={rentModalOpen}
       />
       <AuthModal

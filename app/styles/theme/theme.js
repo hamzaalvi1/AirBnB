@@ -2,7 +2,7 @@ import { extendTheme } from "@chakra-ui/react";
 import { MenuTheme, ModalTheme, HeadingTheme, ButtonTheme } from "./components";
 
 const colors = {
-  primaryColor: "#ff385c",
+  primaryColor: "#00B5D8",
   primaryFont: "Nunito",
   borderColor: "#dddddd",
   darkGrey: "#717171",

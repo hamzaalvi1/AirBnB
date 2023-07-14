@@ -27,7 +27,7 @@ export default async function Home(props) {
         {listings.length > 0 ? (
           <PlaceListing listings={listings} currentUser={currentUser} />
         ) : (
-          <EmptyData showReset={true} />
+          <EmptyData showReset={true} classes="max-wrapper-height" />
         )}{" "}
       </div>
     </ClientRender>
