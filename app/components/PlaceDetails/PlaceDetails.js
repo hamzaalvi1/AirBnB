@@ -6,13 +6,18 @@ import { PlaceInfo } from "./PlaceInfo";
 import { useCountries } from "@/app/hooks";
 import { PlaceContent } from "./PlaceContent";
 import { PlaceReservations } from "./PlaceReservations";
-import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Grid,
+  GridItem,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { placeItemsImageStyles } from "./styles";
-
 
 function PlaceDetails(props) {
   const { listDetails, user, reservations = [] } = props;
-
+  const [isSmallThan575] = useMediaQuery("(max-width: 575px)");
   const { getCountryByValue } = useCountries();
   const countryDetails = getCountryByValue(listDetails?.locationValue);
   const Map = dynamic(() => import("../Map"), {
@@ -20,7 +25,7 @@ function PlaceDetails(props) {
   });
   return (
     <Box as="div" className="main-wrapper">
-      <Container maxW={"90%"}>
+      <Container maxW={isSmallThan575 ? "100%" : "90%"}>
         <PlaceContent
           heading={listDetails?.title}
           paragraph={{
@@ -42,7 +47,7 @@ function PlaceDetails(props) {
           />
           <Favorite favoriteId={listDetails?.id} currentUser={user} />
         </Box>
-        <Grid templateColumns="57% 40%" gap={"50px"}>
+        <Grid templateColumns="57% 40%" gap={"50px"} className="grip-single">
           <GridItem>
             <PlaceInfo listDetails={listDetails} />
             <Map coords={countryDetails?.latlng} />

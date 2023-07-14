@@ -96,3 +96,37 @@ html {
 /* .airbnb-calender{
     background: ##00B5D8;
 } */
+.grid-wrapper {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (min-width:1600px) {
+    .grid-wrapper {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+}
+
+@media (max-width:1300px) {
+    .grid-wrapper {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media (max-width:1199px) {
+    .grid-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width:575px) {
+    .grid-wrapper {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .grip-single {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+}

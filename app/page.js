@@ -25,7 +25,11 @@ export default async function Home(props) {
     <ClientRender>
       <div className={"main-wrapper"}>
         {listings.length > 0 ? (
-          <PlaceListing listings={listings} currentUser={currentUser} />
+          <PlaceListing
+            listings={listings}
+            currentUser={currentUser}
+            classes={"grid-wrapper"}
+          />
         ) : (
           <EmptyData showReset={true} classes="max-wrapper-height" />
         )}{" "}

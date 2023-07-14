@@ -11,7 +11,7 @@ function PlaceListing(props) {
       {" "}
       <Grid
         as="div"
-        templateColumns={`repeat(${isSmallThan1600 ? 4 : 5}, 1fr)`}
+        // templateColumns={`repeat(${isSmallThan1600 ? 4 : 5}, 1fr)`}
         gap={-2}
         rowGap={5}
         className={classes ? classes : ""}

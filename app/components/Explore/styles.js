@@ -14,7 +14,10 @@ export const exploreWrapper = {
   margin: "auto",
   '&:hover':{
     boxShadow:'lg'
-  }
+  },
+  "@media (max-width: 575px)": {
+    display: "none",
+  },
 
 };
 
