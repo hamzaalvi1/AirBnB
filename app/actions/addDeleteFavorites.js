@@ -19,7 +19,7 @@ const addFavorites = async ({ listingId, currentUser, type, refresh }) => {
     };
     const favorite = await fetchAPI(apiParams);
     if (favorite?.status == 200) {
-      successLogger("Successfully Added");
+      successLogger(favorite?.message);
       refresh();
     }
   } catch (err) {
